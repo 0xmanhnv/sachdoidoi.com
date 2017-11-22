@@ -1,0 +1,15 @@
+table.table{
+	width: 100% !important;
+}
+
+div.cke_contents{
+	height: 500px !important;
+}
+
+div.bottom{
+	margin-bottom: 10px;
+}
+
+.icheck > label{
+	padding-left: 20px;
+}
