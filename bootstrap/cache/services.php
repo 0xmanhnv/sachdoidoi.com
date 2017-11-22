@@ -35,6 +35,8 @@
     31 => 'App\\Providers\\EventServiceProvider',
     32 => 'App\\Providers\\RouteServiceProvider',
     33 => 'Collective\\Html\\HtmlServiceProvider',
+    34 => 'Unisharp\\Laravelfilemanager\\LaravelFilemanagerServiceProvider',
+    35 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'eager' => 
   array (
@@ -57,6 +59,8 @@
     16 => 'App\\Providers\\AuthServiceProvider',
     17 => 'App\\Providers\\EventServiceProvider',
     18 => 'App\\Providers\\RouteServiceProvider',
+    19 => 'Unisharp\\Laravelfilemanager\\LaravelFilemanagerServiceProvider',
+    20 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'deferred' => 
   array (
