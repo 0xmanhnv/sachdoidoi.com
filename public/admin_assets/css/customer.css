@@ -13,3 +13,6 @@ div.bottom{
 .icheck > label{
 	padding-left: 20px;
 }
+.modal-body img{
+	max-width: 100%;
+}

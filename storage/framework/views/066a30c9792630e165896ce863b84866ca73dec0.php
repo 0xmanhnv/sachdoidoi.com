@@ -70,7 +70,7 @@
 					{ "data": "id"},
 					{ "data": "title"},
 					{ "data": "created_at" },
-					{"data" : "featured_post" },
+					{"data" : "is_featured" },
 					{"data": "status"},
 					{ "data": "action", orderable: false, searchable: false}
 				]

@@ -49,7 +49,7 @@
 			    	<div class="share">
 			    		<div class="author-info">
 			    			<div class="author-avatar">
-			    				<img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/23032754_1319030634909161_8414838974445845780_n.jpg?oh=ff67e0299b2a3e30c556bac49c904748&oe=5A69004F" class="avatar avatar-96 photo im-responsive" style="max-width: 100px;">
+			    				<img src="{{ $post->author['avatar'] }}" class="avatar avatar-96 photo im-responsive" style="max-width: 100px;">
 			    			</div>
 			    			<div class="author-description">
 			    				<h3 class="author-title">

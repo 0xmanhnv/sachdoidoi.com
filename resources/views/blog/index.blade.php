@@ -10,6 +10,11 @@
             @foreach ($posts as $post)
                 <article class="row article">
                     <div class="col-xs-12">
+                        <div class="category-post">
+                            <a href="{{ route('blog.category.detail',[$post->category['id'], $post->category['slug']]) }}">
+                                <span class="label label-danger">{{ $post->category['name'] }}</span>
+                            </a>
+                        </div>
                         <div class="block-postMeta postMeta-previewHeader">
                             <div class="u-floatLeft">
                                 <div class="postMetaInline-avatar">
@@ -50,13 +55,6 @@
         @endif
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4">
-        {{-- facebook page --}}
-        <div class="panel panel-custome">
-            <div class="panel-body panel-body-custome panel-body-facebook">
-                <div class="fb-page" data-href="https://www.facebook.com/tailieucntt/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/tailieucntt/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/tailieucntt/">Tài liệu chuyên nghành Công Nghệ Thông Tin</a></blockquote></div>
-            </div>
-        </div>
-        {{-- end facebook page --}}
         {{-- categories --}}
          @if(isset($categories))
             <div class="panel panel-custome">
@@ -71,7 +69,7 @@
                             <li class="list-item">
                                 <button class="button button--circle u-disablePointerEvents">
                                     <span class="list-index">
-                                        <img src="https://giaphiep.com/images/laravel.png">
+                                        <img src="{{ $post->category['thumbnail'] }}" class="thumbnail-category">
                                     </span>
                                 </button>
                                 <div class="list-itemInfo">

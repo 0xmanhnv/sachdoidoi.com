@@ -68,3 +68,28 @@ a {
 .well{
     padding: 0px;
 }
+
+.content-post img{
+    max-width: 100%;
+    height: auto;
+    display: inline;
+}
+
+.article{
+    position: relative;
+}
+
+    .article .category-post{
+        position: absolute;
+        right: 1px;
+        top: -15px;
+    }
+.list-item button{
+    padding: 0px;
+}
+    img.thumbnail-category {
+        max-width: 100%;
+        min-width: 100%;
+        margin-left: 0px;
+        min-height: 100%;
+    }

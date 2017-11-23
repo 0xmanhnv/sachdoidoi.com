@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use \Datatables;
 use App\Models\Post;
+use Validator;
+use App\Http\Requests\StoreBlogPost;
+use Auth;
 
 class PostController extends Controller
 {
@@ -58,7 +61,7 @@ class PostController extends Controller
                         </form>
                         ';
                 })
-                ->editColumn('featured_post', '{{ $featured_post == 1 ? "featured" : "" }}' )
+                ->editColumn('is_featured', '{{ $is_featured == 1 ? "featured" : "" }}' )
                 ->editColumn('status', '{{ $status == 1 ? "public" : "private" }}' )
                 ->make(true);
     }
@@ -79,17 +82,19 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $data = $request->all();
-        unset($data['_token']);
-        unset($data['tags']);
+    public function store(StoreBlogPost $request)
+    {   
 
-        $data['user_id'] = 1;
-        $data['category_id'] = 1;
-        $data['slug'] = str_slug($data['title']);
+        $data = $request->except(['_token', 'tags']);
+        $data['user_id'] = Auth::id();
 
-        // dd($data);
+        // crate slug post
+        // 18/03/1997 my birthday
+        $data['slug'] = str_slug($data['title'])
+                        .'-'
+                        .(time() - strtotime(date('1997-03-18 12:00:00')))
+                        .'.html';
+
         $post = Post::create($data);
         return redirect( route('admin.posts.edit', $post->id) );
     }
@@ -125,16 +130,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBlogPost $request, $id)
     {
-        $data = $request->all();
-        unset($data['_token']);
-        unset($data['tags']);
-        unset($data['_method']);
-
-        $data['user_id'] = 1;
-        $data['slug'] = str_slug($data['title']);
-        // dd($data);
+        $data = $request->except(['_token', 'tags', '_method']);
+        $data['user_id'] = Auth::id();
 
         Post::where('id', $id)->update($data);
 

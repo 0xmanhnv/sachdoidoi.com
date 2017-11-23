@@ -62,7 +62,6 @@
 	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/dataTables.bootstrap.min.js') }}"></script>
 	<script type="text/javascript">
 	    $(function () {
-	    	// $('#posts-table').css('width', '100%');
 			var table = $('#posts-table').DataTable( {
 				processing: true,
 				serverSide: true,
@@ -72,7 +71,7 @@
 					{ "data": "id"},
 					{ "data": "title"},
 					{ "data": "created_at" },
-					{"data" : "featured_post" },
+					{"data" : "is_featured" },
 					{"data": "status"},
 					{ "data": "action", orderable: false, searchable: false}
 				]

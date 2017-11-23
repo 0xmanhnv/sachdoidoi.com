@@ -12,10 +12,10 @@ return [
 
     // Middlewares which should be applied to all package routes.
     // For laravel 5.1 and before, remove 'web' from the array.
-    'middlewares' => ['web', 'auth'],
+    'middlewares' => ['web', 'auth', 'admin.login'],
 
     // The url to this package. Change it if necessary.
-    'url_prefix' => 'laravel-filemanager',
+    'url_prefix' => 'files',
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     */
 
     // If true, private folders will be created for each signed-in user.
-    'allow_multi_user' => true,
+    'allow_multi_user' => false,
     // If true, share folder will be created when allow_multi_user is true.
     'allow_share_folder' => true,
 
@@ -43,9 +43,9 @@ return [
 
     // Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on.
     // You should create routes to serve images if it is not set to public.
-    'base_directory' => 'public',
+    'base_directory' => 'public/storage',
 
-    'images_folder_name' => 'photos',
+    'images_folder_name' => 'images',
     'files_folder_name'  => 'files',
 
     'shared_folder_name' => 'shares',

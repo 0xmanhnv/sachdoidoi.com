@@ -98,7 +98,7 @@ Route::group(['prefix' => 'blog'], function(){
 	 * blog/posts
 	 */
 	Route::get('posts', 'Blog\BlogController@posts');
-	Route::prefix('post')->group(function(){
+	Route::prefix('/')->group(function(){
 		// Route::get('/', 'Blog\PostController@index')->name('blog.post.index');
 		Route::get('{slug}', 'Blog\PostController@detail')->name('blog.post.detail');
 	});

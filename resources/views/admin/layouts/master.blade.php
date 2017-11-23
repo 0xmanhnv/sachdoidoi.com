@@ -398,6 +398,12 @@
   {{-- alert --}}
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{{ asset('admin_assets/js/notify.min.js') }}"></script>
+  {{-- /**
+   * editor
+   * customer and default
+   */ --}}
+  <script type="text/javascript" src="{{ asset('admin_assets/js/ckeditor/ckeditor.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('admin_assets/js/ckeditor/CustomEditor.js') }}"></script>
   <script>
     $(function(){
       $.ajaxSetup({

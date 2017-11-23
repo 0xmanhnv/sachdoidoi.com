@@ -398,6 +398,9 @@
   
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="<?php echo e(asset('admin_assets/js/notify.min.js')); ?>"></script>
+  
+  <script type="text/javascript" src="<?php echo e(asset('admin_assets/js/ckeditor/ckeditor.js')); ?>"></script>
+  <script type="text/javascript" src="<?php echo e(asset('admin_assets/js/ckeditor/CustomEditor.js')); ?>"></script>
   <script>
     $(function(){
       $.ajaxSetup({
