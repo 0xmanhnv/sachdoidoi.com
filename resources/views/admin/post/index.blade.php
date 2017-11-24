@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 
 @section('head')
-	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datatables/jquery.dataTables.min.css') }}"> --}}
 	<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datatables/dataTables.bootstrap.min.css') }}">
 @endsection
 
@@ -61,12 +60,13 @@
 	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/jquery.dataTables.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/dataTables.bootstrap.min.js') }}"></script>
 	<script type="text/javascript">
+		
 	    $(function () {
 			var table = $('#posts-table').DataTable( {
 				processing: true,
 				serverSide: true,
 				responsive:true,
-				"ajax": '{!! route('admin.posts.json.listPost') !!}',
+				"ajax": '{!! route('admin.posts.json.list') !!}',
 				"columns": [
 					{ "data": "id"},
 					{ "data": "title"},
@@ -89,9 +89,10 @@
 					if (willDelete) {
 					    $.ajax({
 			    			method: "POST",
-			    			url: '{!! route('admin.posts.destroyPost' ) !!}',
+			    			
+			    			url: '{{ url('/admin/posts') }}'+'/'+$(this).siblings('input[name="id"]').val(),
 			    			data: { 
-			    				id: $(this).siblings('input[name="id"]').val(), 
+			    				// id: $(this).siblings('input[name="id"]').val(), 
 			    				_token : $('meta[name="csrf-token"]').attr('content'),
 			    				_method : "DELETE"
 			    			}

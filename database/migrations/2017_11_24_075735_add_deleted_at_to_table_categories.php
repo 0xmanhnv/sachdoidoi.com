@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddParentToTableCategories extends Migration
+class AddDeletedAtToTableCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddParentToTableCategories extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->tinyInteger('parent_id')->nullable()->after('description')->comment('chứa id category parent');
+            $table->softDeletes();
         });
     }
 

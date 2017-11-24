@@ -1,5 +1,4 @@
 <?php $__env->startSection('head'); ?>
-	
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('admin_assets/css/datatables/dataTables.bootstrap.min.css')); ?>">
 <?php $__env->stopSection(); ?>
 
@@ -59,13 +58,13 @@
 	<script type="text/javascript" src="<?php echo e(asset('admin_assets/js/datatables/jquery.dataTables.min.js')); ?>"></script>
 	<script type="text/javascript" src="<?php echo e(asset('admin_assets/js/datatables/dataTables.bootstrap.min.js')); ?>"></script>
 	<script type="text/javascript">
+		
 	    $(function () {
-	    	// $('#posts-table').css('width', '100%');
 			var table = $('#posts-table').DataTable( {
 				processing: true,
 				serverSide: true,
 				responsive:true,
-				"ajax": '<?php echo route('admin.posts.json.listPost'); ?>',
+				"ajax": '<?php echo route('admin.posts.json.list'); ?>',
 				"columns": [
 					{ "data": "id"},
 					{ "data": "title"},
@@ -88,9 +87,10 @@
 					if (willDelete) {
 					    $.ajax({
 			    			method: "POST",
-			    			url: '<?php echo route('admin.posts.destroyPost' ); ?>',
+			    			
+			    			url: '<?php echo e(url('/admin/posts')); ?>'+'/'+$(this).siblings('input[name="id"]').val(),
 			    			data: { 
-			    				id: $(this).siblings('input[name="id"]').val(), 
+			    				// id: $(this).siblings('input[name="id"]').val(), 
 			    				_token : $('meta[name="csrf-token"]').attr('content'),
 			    				_method : "DELETE"
 			    			}

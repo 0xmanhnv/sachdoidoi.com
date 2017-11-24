@@ -54,9 +54,10 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 	/**
 	 * admin/posts
 	 */
-	Route::get('posts/json/list-post', 'Admin\PostController@jsonListPost')
-		->name('admin.posts.json.listPost');
-	Route::delete('posts/destroy-post', 'Admin\PostController@destroyAjax')->name('admin.posts.destroyPost');
+	Route::prefix('posts')->group(function(){
+		Route::get('json/list-post', 'Admin\PostController@jsonListPost')
+		->name('admin.posts.json.list');
+	});
 	Route::resource('posts', 'Admin\PostController', ['names' => [
 	    'create' 	=> 'admin.posts.create',
 	    'store' 	=> 'admin.posts.store',
@@ -66,6 +67,18 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 	    'update'	=> 'admin.posts.update'	
 	]]);
 
+	/**
+	 * admin/categories
+	 */
+	Route::prefix('categories')->group(function(){
+		Route::get('json/list-category', 'Admin\CategoryController@jsonListCategory')->name('admin.categories.json.list');
+		Route::get('{id_category}/json/list-post', 'Admin\CategoryController@jsonListPost')->name('admin.categories.json.posts');
+	});
+	Route::resource('categories', 'Admin\CategoryController', ['names' => [
+		'index'		=> 'admin.categories.index',
+		'destroy' 	=> 'admin.categories.destroy',
+		'show'		=>	'admin.categories.show'
+	]]);
 	/**
 	 * admin/users
 	 */

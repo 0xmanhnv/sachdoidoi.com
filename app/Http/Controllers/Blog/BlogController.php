@@ -27,7 +27,7 @@ class BlogController extends Controller
          * get post is_trash != 1
          * @var [type]
          */
-        $posts = Post::where('is_trash', '!=', 1)->paginate(10);    
+        $posts = Post::where('status', '=', 1)->paginate(10);    
         
         return view('blog.index',[
             'posts' => $posts,
@@ -50,7 +50,7 @@ class BlogController extends Controller
      * @return [type] [description]
      */
     public function posts(){
-        $posts = Post::where('is_trash', '!=', 1)->paginate(10);    
+        $posts = Post::where('status', '=', 1)->paginate(10);    
         
         return view('blog.post.list',[
             'posts' => $posts,
@@ -97,9 +97,7 @@ class BlogController extends Controller
         $post = Post::where(
                 'id', '=', $id,
                 'and', 
-                'slug', '=', $slug,
-                'and', 
-                'is_trash', '!=', 1
+                'slug', '=', $slug
                 )
                 ->get()
                 ->first();

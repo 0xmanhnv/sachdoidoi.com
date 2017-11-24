@@ -27,43 +27,43 @@ class PostController extends Controller
      * @return json ( datatables )
      */
     public function jsonListPost(){
-        $posts = Post::where('is_trash', '!=', '1')->get();
+        $posts = Post::all();
 
         return Datatables($posts)
-                ->addColumn('action', function ($post) {
-                    return '       
-                        <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#detail-post-'.$post->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                          <!-- Modal -->
-                          <div id="detail-post-'.$post->id.'" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                              <!-- Modal content-->
-                              <div class="modal-content">
-                                <div class="modal-header bg-info text-center">
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h3 class="modal-title"><strong>'. $post->title .'</strong></h3>
-                                </div>
-                                <div class="modal-body">
-                                  <img src="'.$post->thumbnail.'" alt="" style="max-width: 100%;">
-                                  <p>'.$post->content.'</p>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-default btn-circle" data-dismiss="modal">Close</button>
-                                </div>
-                              </div>
+            ->addColumn('action', function ($post) {
+                return '       
+                    <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#detail-post-'.$post->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                      <!-- Modal -->
+                      <div id="detail-post-'.$post->id.'" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header bg-info text-center">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h3 class="modal-title"><strong>'. $post->title .'</strong></h3>
+                            </div>
+                            <div class="modal-body">
+                              <img src="'.$post->thumbnail.'" alt="" style="max-width: 100%;">
+                              <p>'.$post->content.'</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default btn-circle" data-dismiss="modal">Close</button>
                             </div>
                           </div>
-                        <a href="posts/'.$post->id.'/edit" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i></a>
-                        <form action="posts/'.$post->id.'" method="post" style="display: inline-block;">
-                          <input type="hidden" name="_token" value="'.csrf_token().'">
-                          <input type="hidden" name="_method" value="DELETE">
-                          <input type="hidden" name="id" value="'.$post->id.'">
-                          <button type="button" class="btn btn-xs btn-danger delete-post"><i class="glyphicon glyphicon-remove"></i></button>
-                        </form>
-                        ';
-                })
-                ->editColumn('is_featured', '{{ $is_featured == 1 ? "featured" : "" }}' )
-                ->editColumn('status', '{{ $status == 1 ? "public" : "private" }}' )
-                ->make(true);
+                        </div>
+                      </div>
+                    <a href="posts/'.$post->id.'/edit" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i></a>
+                    <form action="posts/'.$post->id.'" method="post" style="display: inline-block;">
+                      <input type="hidden" name="_token" value="'.csrf_token().'">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="hidden" name="id" value="'.$post->id.'">
+                      <button type="button" class="btn btn-xs btn-danger delete-post"><i class="glyphicon glyphicon-remove"></i></button>
+                    </form>
+                    ';
+            })
+            ->editColumn('is_featured', '{{ $is_featured == 1 ? "featured" : "" }}' )
+            ->editColumn('status', '{{ $status == 1 ? "public" : "private" }}' )
+            ->make(true);
     }
 
     /**
@@ -148,21 +148,18 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::where('id', $id)->update([
-            'is_trash' => 1,
-            'status' => 0
-        ]);
+        Post::where('id', $id)->delete();
 
         return redirect()->back();
     }
 
-    public function destroyAjax(Request $request)
-    {
-        Post::where('id', $request->input('id'))->update([
-            'is_trash' => 1,
-            'status'   => 0
-        ]);
-
-        return redirect()->back();
-    }
+    // public function destroyAjax(Request $request)
+    // {
+    //     Post::where('id', $request->input('id'))->delete();
+    //     // ->update([
+    //     //     'is_trash' => 1,
+    //     //     'status'   => 0
+    //     // ]);
+    //     return redirect()->back();
+    // }
 }

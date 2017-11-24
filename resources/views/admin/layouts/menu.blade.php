@@ -14,7 +14,7 @@ MAIN NAVIGATION</li>
 </li>
 
 <li class="nav-item {{ Request::is('admin/categories*') ? 'active open' : '' }} ">
-    <a href="" class="nav-link ">
+    <a href="{{ route('admin.categories.index') }}" class="nav-link ">
         <i class="fa fa-briefcase" aria-hidden="true"></i> <span class="title">Categories</span>
     </a>
 </li>

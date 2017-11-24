@@ -17,23 +17,19 @@ class RecycleBinController extends Controller
     }
 
     public function undoPost(Request $request){
-    	// dd($request->input('id'));
-    	Post::where('id', $request->input('id'))->update([
-        'is_trash' => 0,
-        'status' => 1
-      ]);
+    	Post::where('id', $request->input('id'))->restore();
 
     	return redirect()->back();
     }
 
     public function deleteForeverPost(Request $request){
-    	Post::where('id', $request->input('id'))->delete();
+    	Post::where('id', $request->input('id'))->forceDelete();
     	
     	return redirect()->back();
     }
 
     public function jsonListPost(){
-    	$posts = Post::where('is_trash', 1)->get();
+    	$posts = Post::onlyTrashed()->get();
 
       return Datatables($posts)
         ->addColumn('action', function ($post) {
@@ -56,8 +52,12 @@ class RecycleBinController extends Controller
             </form>
             ';
         })
-        ->editColumn('featured_post', '{{ $featured_post == 1 ? "featured" : "" }}' )
+        ->editColumn('is_featured', '{{ $is_featured == 1 ? "featured" : "" }}' )
         ->editColumn('status', '{{ $status == 1 ? "public" : "private" }}' )
         ->make(true);
     }
+
+    /**
+     * recyclebin categories
+     */
 }

@@ -1,9 +1,10 @@
-<?php $__env->startSection('head'); ?>
-	
-	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('admin_assets/css/datatables/dataTables.bootstrap.min.css')); ?>">
-<?php $__env->stopSection(); ?>
+@extends('admin.layouts.master')
 
-<?php $__env->startSection('content'); ?>
+@section('head')
+	<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datatables/dataTables.bootstrap.min.css') }}">
+@endsection
+
+@section('content')
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
@@ -12,10 +13,20 @@
 					<!-- Content Header (Page header) -->
 					<div class="box-header with-border">
 						<h3 class="box-title">
-							<i class="fa fa fa-newspaper-o"></i> RECYCLE BIN ( POSTS )
+							<i class="fa fa fa-newspaper-o"></i> LIST POST
 						</h3>
 					</div>
 					<div class="box-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="pull-left bottom">
+									<a href="{{ route('admin.posts.create') }}" class="btn btn-primary btn-circle">
+										<i class="fa fa-plus"></i>Thêm mới
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
 						<div >
 							<div class="row">
 								<div class="col-lg-12">
@@ -43,32 +54,33 @@
 		<!-- Main row -->
 	</section>
 	<!-- /.content -->
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startSection('footer'); ?>
-	<script type="text/javascript" src="<?php echo e(asset('admin_assets/js/datatables/jquery.dataTables.min.js')); ?>"></script>
-	<script type="text/javascript" src="<?php echo e(asset('admin_assets/js/datatables/dataTables.bootstrap.min.js')); ?>"></script>
+@section('footer')
+	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/jquery.dataTables.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/dataTables.bootstrap.min.js') }}"></script>
 	<script type="text/javascript">
+		
 	    $(function () {
 			var table = $('#posts-table').DataTable( {
 				processing: true,
 				serverSide: true,
 				responsive:true,
-				"ajax": '<?php echo route('admin.recycleBin.posts.json.listPost'); ?>',
+				"ajax": '{!! route('admin.categories.json.posts', $category_id) !!}',
 				"columns": [
-					{"data": "id"},
-					{"data": "title"},
-					{"data": "created_at" },
+					{ "data": "id"},
+					{ "data": "title"},
+					{ "data": "created_at" },
 					{"data" : "is_featured" },
 					{"data": "status"},
 					{ "data": "action", orderable: false, searchable: false}
 				]
-			} ); 
+			} );
 
 			$('#posts-table').on('click', '.delete-post',function(){
 				swal({
 				  title: "Are you sure?",
-				  text: "Nếu bấm chọn xóa, bài viết sẽ mất vĩnh viễn khỏi hệ thống!",
+				  text: "Nếu bấm chọn xóa, bài viết sẽ bị xóa!",
 				  icon: "warning",
 				  buttons: true,
 				  dangerMode: true,
@@ -77,9 +89,10 @@
 					if (willDelete) {
 					    $.ajax({
 			    			method: "POST",
-			    			url: '<?php echo route('admin.recycleBin.posts.delete'); ?>',
+			    			
+			    			url: '{{ url('/admin/posts') }}'+'/'+$(this).siblings('input[name="id"]').val(),
 			    			data: { 
-			    				id: $(this).siblings('input[name="id"]').val(), 
+			    				// id: $(this).siblings('input[name="id"]').val(), 
 			    				_token : $('meta[name="csrf-token"]').attr('content'),
 			    				_method : "DELETE"
 			    			}
@@ -103,7 +116,5 @@
 				});
 		    });
 	    });
-
 	</script>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('admin.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection

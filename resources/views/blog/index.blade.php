@@ -69,7 +69,7 @@
                             <li class="list-item">
                                 <button class="button button--circle u-disablePointerEvents">
                                     <span class="list-index">
-                                        <img src="{{ $post->category['thumbnail'] }}" class="thumbnail-category">
+                                        <img src="{{ $category->thumbnail }}" class="thumbnail-category">
                                     </span>
                                 </button>
                                 <div class="list-itemInfo">

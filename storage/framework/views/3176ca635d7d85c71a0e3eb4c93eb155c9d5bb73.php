@@ -72,7 +72,7 @@
                             <li class="list-item">
                                 <button class="button button--circle u-disablePointerEvents">
                                     <span class="list-index">
-                                        <img src="<?php echo e($post->category['thumbnail']); ?>" class="thumbnail-category">
+                                        <img src="<?php echo e($category->thumbnail); ?>" class="thumbnail-category">
                                     </span>
                                 </button>
                                 <div class="list-itemInfo">
