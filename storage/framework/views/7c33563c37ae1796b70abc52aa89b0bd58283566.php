@@ -20,7 +20,7 @@ MAIN NAVIGATION</li>
 </li>
 
 <li class="nav-item <?php echo e(Request::is('admin/tags*') ? 'active open' : ''); ?> ">
-    <a href="" class="nav-link ">
+    <a href="<?php echo e(route('admin.tags.index')); ?>" class="nav-link ">
         <i class="fa fa-tags" aria-hidden="true"></i> <span class="title">Tags</span>
     </a>
 </li>
@@ -36,5 +36,10 @@ MAIN NAVIGATION</li>
 <li class="nav-item <?php echo e((Request::is('admin/recycle-bin/posts*')) ? 'active open' : ''); ?>">
     <a href="<?php echo e(route('admin.recycleBin.posts')); ?>" class="nav-link ">
         <i class="fa fa-bitbucket" aria-hidden="true"></i> <span class="title">Posts Trash</span>
+    </a>
+</li>
+<li class="nav-item <?php echo e((Request::is('admin/recycle-bin/categories*')) ? 'active open' : ''); ?>">
+    <a href="<?php echo e(route('admin.recycleBin.categories')); ?>" class="nav-link ">
+        <i class="fa fa-bitbucket" aria-hidden="true"></i> <span class="title">Categories Trash</span>
     </a>
 </li>

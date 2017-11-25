@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+	<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <i class="fa fa-briefcase"></i> Danh mục
+        <small>Bảng điểu khiển </small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Tất cả danh mục</li>
+      </ol>
+    </section>
+
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
@@ -13,14 +25,14 @@
 					<!-- Content Header (Page header) -->
 					<div class="box-header with-border">
 						<h3 class="box-title">
-							<i class="fa fa fa-newspaper-o"></i> LIST POST
+							<i class="fa fa-briefcase"></i> TẤT CẢ DANH MỤC
 						</h3>
 					</div>
 					<div class="box-body">
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="pull-left bottom">
-									<a href="{{ route('admin.posts.create') }}" class="btn btn-primary btn-circle">
+									<a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-circle">
 										<i class="fa fa-plus"></i>Thêm mới
 									</a>
 								</div>
@@ -35,7 +47,7 @@
 											<thead>
 								              <tr>
 								                <th class="text-center">#</th>
-								                <th class="text-center">Name</th>
+								                <th class="text-center">Tên</th>
 								                <th class="text-center">Ngày tạo</th>
 								                <th class="text-center">Parent</th>
 								                <th class="text-center">Trạng thái</th>

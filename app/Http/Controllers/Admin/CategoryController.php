@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Http\Requests\StoreBlogCategory;
 
 class CategoryController extends Controller
 {
@@ -47,7 +48,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -56,9 +57,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogCategory $request)
     {
-        //
+        $data = $request->except(['_token']);
+        $data['slug'] = str_slug($data['name']);
+
+        Category::create($data);
+
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -69,8 +75,12 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        return view('admin.category.posts', [
-            'category_id' => $id
+
+        $category = Category::where('id', $id)->first();
+
+        return view('admin.category.detail', [
+            'category' => $category,
+            'countPost' => count($category->posts)
         ]);
     }
 
@@ -100,7 +110,7 @@ class CategoryController extends Controller
                           </div>
                         </div>
                       </div>
-                    <a href="posts/'.$post->id.'/edit" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="'.route('admin.posts.edit', $post->id).'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i></a>
                     <form action="posts/'.$post->id.'" method="post" style="display: inline-block;">
                       <input type="hidden" name="_token" value="'.csrf_token().'">
                       <input type="hidden" name="_method" value="DELETE">
@@ -122,7 +132,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $category = Category::where('id', $id)->first();
+
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -132,9 +145,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBlogCategory $request, $id)
     {
-        //
+        $data = $request->except(['_token', '_method']);
+        // dd($data);
+        Category::where('id', $id)->update($data);
+
+        return redirect()->back();
     }
 
     /**

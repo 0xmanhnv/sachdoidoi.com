@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
+    use \Conner\Tagging\Taggable;
 
     protected $dates = ['deleted_at'];
 
@@ -18,10 +19,6 @@ class Post extends Model
     public function author(){
     	return $this->belongsTo('App\User', 'user_id');
     }
-
-    public function tags(){
-    	return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
-   	}
 
     public function category(){
       return $this->belongsTo('App\Models\Category', 'category_id');

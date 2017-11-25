@@ -3,15 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Post;
+use \Conner\Tagging\Model\Tag as TaggingTag;
 
-class Tag extends Model
+class Tag extends TaggingTag
 {
-	protected $fillable = [
-    	'id', 'name', 'slug'
-    ];
-
-    public function posts(){
-    	return $this->belongsToMany(Post::class, 'post_tags', 'post_id', 'tag_id');
-    }
+    
 }

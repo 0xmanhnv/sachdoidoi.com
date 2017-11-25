@@ -96,6 +96,14 @@ class PostController extends Controller
                         .'.html';
 
         $post = Post::create($data);
+
+        if($request->input('tags') != null){
+            $tags = explode(",",$request->input('tags'));
+            $post->tag($tags);
+        }else{
+            $post->untag();
+        }
+
         return redirect( route('admin.posts.edit', $post->id) );
     }
 
@@ -118,8 +126,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::where('id', $id)->first();
-
+        $post = Post::where('id', $id)->with('tagged')->first();
         return view('admin.post.edit', compact('post'));
     }
 
@@ -132,11 +139,19 @@ class PostController extends Controller
      */
     public function update(StoreBlogPost $request, $id)
     {
-        $data = $request->except(['_token', 'tags', '_method']);
+        $data = $request->except(['_token', '_method', 'tags']);
         $data['user_id'] = Auth::id();
 
-        Post::where('id', $id)->update($data);
 
+        Post::where('id', $id)->update($data);
+        $post = Post::where('id', $id)->with('tagged')->first();
+
+        if($request->input('tags') != null){
+            $tags = explode(",",$request->input('tags'));
+            $post->retag($tags);
+        }else{
+            $post->untag();
+        }
         return redirect()->back();
     }
 

@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use View;
 use App\Models\Category;
-use App\Models\Tag;
+use \Conner\Tagging\Model\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         /**
          * share tags
          */
-        View::share('tags', Tag::where('status', 1)->get());
+        View::share('tags', Tag::all());
     }
 
     /**

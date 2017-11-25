@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 
 class RecycleBinController extends Controller
 {
@@ -58,6 +59,50 @@ class RecycleBinController extends Controller
     }
 
     /**
-     * recyclebin categories
+     * recyclebin categories *****************************************
      */
+    
+    public function categories(){
+      return view('admin.category.recycleBin');
+    }
+
+    public function undoCategory(Request $request){
+
+      Category::where('id', $request->input('id'))->restore();
+
+      return redirect()->back();
+    }
+
+    public function deleteForeverCategory(Request $request){
+      Category::where('id', $request->input('id'))->forceDelete();
+      
+      return redirect()->back();
+    }
+
+    public function jsonListCategory(){
+      $categories = Category::onlyTrashed()->get();
+
+      return Datatables($categories)
+        ->addColumn('action', function ($category) {
+          return '
+            <form action="'.route('admin.recycleBin.posts.undoCategory').'" method="post" style="display: inline-block;">
+              <input type="hidden" name="_token" value="'.csrf_token().'">
+              <input type="hidden" name="_method" value="PUT">
+              <input type="hidden" name="id" value="'.$category->id.'">
+              <button type="submit" title="Click để khôi phục!" class="btn btn-xs btn-success">
+                <i class="fa fa-undo" aria-hidden="true"></i>
+              </button>
+            </form>
+            <form action="'.route('admin.recycleBin.posts.delete').'" method="post" style="display: inline-block;">
+              <input type="hidden" name="_token" value="'.csrf_token().'">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="id" value="'.$category->id.'">
+              <button type="button" class="btn btn-xs btn-danger delete-post" title="Click để xóa vĩnh viễn!">
+                <i class="glyphicon glyphicon-remove"></i>
+              </button>
+            </form>
+            ';
+        })
+        ->make(true);
+    }
 }

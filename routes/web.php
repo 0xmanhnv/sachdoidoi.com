@@ -48,6 +48,12 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 		/**
 		 * admin/recycle-bin/categories
 		 */
+		Route::prefix('categories')->group(function(){
+			Route::get('/', 'Admin\RecycleBinController@categories')->name('admin.recycleBin.categories');
+			Route::get('json/list-category', 'Admin\RecycleBinController@jsonListCategory')->name('admin.recycleBin.posts.json.listCategory');
+			Route::put('undo', 'Admin\RecycleBinController@undoCategory')->name('admin.recycleBin.posts.undoCategory');
+			Route::delete('delete', 'Admin\RecycleBinController@deleteForeverCategory')->name('admin.recycleBin.categories.delete');
+		});
 	});
 
 
@@ -77,8 +83,25 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 	Route::resource('categories', 'Admin\CategoryController', ['names' => [
 		'index'		=> 'admin.categories.index',
 		'destroy' 	=> 'admin.categories.destroy',
-		'show'		=>	'admin.categories.show'
+		'show'		=>	'admin.categories.show',
+		'edit'		=> 'admin.categories.edit',
+		'update'	=> 'admin.categories.update',
+		'create'	=> 'admin.categories.create',
+		'store'		=> 'admin.categories.store'
 	]]);
+
+	/**
+	 * admin/tags/
+	 * 
+	 */
+	Route::prefix('tags')->group(function(){
+		Route::get('datatables/list-tag', 'Admin\TagController@datatablesListTag')->name('admin.tags.datatables.list');
+	});
+	Route::resource('tags', 'Admin\TagController', ['names' => [
+		'index' 	=> 'admin.tags.index',
+		'store'		=> 'admin.tags.store'
+	]]);
+
 	/**
 	 * admin/users
 	 */

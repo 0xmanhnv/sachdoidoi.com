@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Nguyễn Mạnh | Dashboard</title>
+  <link rel="icon" href="{{ asset('admin_assets/favicon.png') }}" type="image/x-icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,6 +36,7 @@
   <link rel="stylesheet" href="{{ asset('admin_assets/css/bootstrap3-wysihtml5.min.css') }}">
   <!-- css customer -->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/customer.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tagsinput.css') }}">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   
@@ -404,6 +406,7 @@
    */ --}}
   <script type="text/javascript" src="{{ asset('admin_assets/js/ckeditor/ckeditor.js') }}"></script>
   <script type="text/javascript" src="{{ asset('admin_assets/js/ckeditor/CustomEditor.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/bootstrap-tagsinput.min.js') }}"></script>
   <script>
     $(function(){
       $.ajaxSetup({

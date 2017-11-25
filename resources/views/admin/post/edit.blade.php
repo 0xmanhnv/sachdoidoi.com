@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+	<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <i class="fa fa fa-newspaper-o"></i> Bài viết
+        <small>Bảng điều khiển</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{ route('admin.posts.index') }}">Tất cả bài viết</a></li>
+        <li>Cập nhật </li>
+      </ol>
+    </section>
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
@@ -13,7 +25,7 @@
 					<!-- Content Header (Page header) -->
 					<div class="box-header with-border">
 						<h3 class="box-title">
-							<i class="fa fa fa-newspaper-o"></i> EDIT POST
+							<i class="glyphicon glyphicon-edit"></i> CHỈNH SỬA BÀI VIẾT
 						</h3>
 					</div>
 					@if(isset($post))
@@ -24,7 +36,7 @@
 								<div class="row">
 									<div class="col-lg-8">
 										<div class="form-group">
-										  <label for="title-post">Title(<span style="color: red;">*</span>)</label>
+										  <label for="title-post">Tiêu đề (<span style="color: red;">*</span>)</label>
 										  	@if ($errors->has('title'))
 			                                    <span class="help-block" style="color: red;">
 			                                        <strong>{{ $errors->first('title') }}</strong>
@@ -33,7 +45,7 @@
 										  <input type="text" class="form-control" id="title-post" placeholder="Title .. " name="title" value="{{ $post->title }}">
 										</div>
 										<div class="form-group">
-										  <label for="description-post">Description(<span style="color: red;">*</span>)</label>
+										  <label for="description-post">Mô tả(<span style="color: red;">*</span>)</label>
 										  	@if ($errors->has('description'))
 			                                    <span class="help-block" style="color: red;">
 			                                        <strong>{{ $errors->first('description') }}</strong>
@@ -42,7 +54,7 @@
 										  <textarea class="form-control" rows="5" id="description-post" placeholder="Description ... " name="description">{!! $post->description !!}</textarea>
 										</div>
 										<div class="form-group">
-											<label for="content-post">Content(<span style="color: red;">*</span>)</label>
+											<label for="content-post">Nội dung (<span style="color: red;">*</span>)</label>
 											@if ($errors->has('content'))
 			                                    <span class="help-block" style="color: red;">
 			                                        <strong>{{ $errors->first('content') }}</strong>
@@ -57,7 +69,7 @@
 											<!-- Content Header (Page header) -->
 											<div class="box-header with-border">
 												<h3 class="box-title">
-													<i class="fa fa-bookmark" aria-hidden="true"></i> STATUS
+													<i class="fa fa-bookmark" aria-hidden="true"></i> Trạng thái
 												</h3>
 											</div>
 											<div class="box-body">
@@ -72,7 +84,7 @@
 														<input name="is_featured" type="checkbox" value="1" {{ $post->is_featured == 1 ? 'checked' : '' }}> Featured
 													</label>
 													<div class="pull-right">
-														<button type="submit" class="btn btn-primary">PUBLISH</button>
+														<button type="submit" class="btn btn-primary">Đăng bài</button>
 													</div>
 												</div>
 											</div>
@@ -83,7 +95,7 @@
 											<!-- Content Header (Page header) -->
 											<div class="box-header with-border">
 												<h3 class="box-title">
-													<i class="fa fa-list" aria-hidden="true"></i> CATEGORIES
+													<i class="fa fa-list" aria-hidden="true"></i> Danh mục
 												</h3>
 											</div>
 											<div class="box-body">
@@ -106,15 +118,15 @@
 											<!-- Content Header (Page header) -->
 											<div class="box-header with-border">
 												<h3 class="box-title">
-													<i class="fa fa-picture-o" aria-hidden="true"></i> THUMBNAIL
+													<i class="fa fa-picture-o" aria-hidden="true"></i> Ảnh thu nhỏ
 												</h3>
 											</div>
 											<div class="box-body">
 												<div class="thumbnail">
 													<img src="{{ $post->thumbnail }}" alt="@if( $post->thumbnail != '') {{ 'No Image' }} @else {{ $post->thumbnail }} @endif" alt="No Image" style="width: 250px; height: 200px;" id="holder">
-													<input id="thumbnail" class="form-control" type="hidden" name="thumbnail" style="width: 250px; height: 200px;">
+													<input id="thumbnail" class="form-control" type="hidden" name="thumbnail" style="width: 250px; height: 200px;" value="{{ $post->thumbnail }}">
 												</div>
-												<button type="button" id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary"><i class="fa fa-picture-o" aria-hidden="true"></i>CHOOSE</button>
+												<button type="button" id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary"><i class="fa fa-picture-o" aria-hidden="true"></i> Chọn ảnh</button>
 											</div>
 										</div>
 										<!-- END THUMBNAIL -->
@@ -128,7 +140,11 @@
 											</div>
 											<div class="box-body">
 												<div class="form-group">
-													<input type="text" class="form-control" name="tags">
+													<input type="text" class="form-control" name="tags" data-role="tagsinput" value="@if($post->tagged)
+													 	@foreach ($post->tagged as $tag)
+													 		{{ $tag->tag_name . ',' }}
+													 	@endforeach
+													 @endif">
 												</div>
 											</div>
 										</div>
@@ -151,5 +167,15 @@
 	<script>
 		Editor('content-post');
 		$('#lfm').filemanager('image',  {prefix: "/files"});
+
+		$(function(){
+			$('form').on('keyup keypress', function(e) {
+			  var keyCode = e.keyCode || e.which;
+			  if (keyCode === 13) { 
+			    e.preventDefault();
+			    return false;
+			  }
+			});
+		});
 	</script>
 @endsection

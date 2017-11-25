@@ -24,7 +24,7 @@ class DashboardController extends Controller
 	 */
     public function dashboard(){
     	// dd(Auth::user()->is_admin);
-    	$countRecycleBinPost = Post::where('is_trash', 1)->count();
+    	$countRecycleBinPost = Post::where('status', 1)->count();
     	$coutUserRegister = User::count();
 
     	return view('admin.index', [

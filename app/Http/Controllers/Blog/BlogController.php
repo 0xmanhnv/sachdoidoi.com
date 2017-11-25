@@ -24,7 +24,7 @@ class BlogController extends Controller
      */
     public function index(){
         /**
-         * get post is_trash != 1
+         * get post status = 1
          * @var [type]
          */
         $posts = Post::where('status', '=', 1)->paginate(10);    

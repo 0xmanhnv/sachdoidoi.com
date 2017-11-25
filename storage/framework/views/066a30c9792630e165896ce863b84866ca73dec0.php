@@ -3,6 +3,17 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
+	<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <i class="fa fa fa-newspaper-o"></i> Bài viết
+        <small>Bảng điều khiển</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo e(route('admin.dashboard')); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Tất cả bài viết</li>
+      </ol>
+    </section>
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
@@ -11,7 +22,7 @@
 					<!-- Content Header (Page header) -->
 					<div class="box-header with-border">
 						<h3 class="box-title">
-							<i class="fa fa fa-newspaper-o"></i> LIST POST
+							<i class="fa fa fa-newspaper-o"></i> TẤT CẢ BÀI VIẾT
 						</h3>
 					</div>
 					<div class="box-body">

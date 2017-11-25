@@ -37,6 +37,7 @@
     33 => 'Collective\\Html\\HtmlServiceProvider',
     34 => 'Unisharp\\Laravelfilemanager\\LaravelFilemanagerServiceProvider',
     35 => 'Intervention\\Image\\ImageServiceProvider',
+    36 => 'Conner\\Tagging\\Providers\\TaggingServiceProvider',
   ),
   'eager' => 
   array (
@@ -61,6 +62,7 @@
     18 => 'App\\Providers\\RouteServiceProvider',
     19 => 'Unisharp\\Laravelfilemanager\\LaravelFilemanagerServiceProvider',
     20 => 'Intervention\\Image\\ImageServiceProvider',
+    21 => 'Conner\\Tagging\\Providers\\TaggingServiceProvider',
   ),
   'deferred' => 
   array (

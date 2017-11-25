@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('head')
+	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datatables/jquery.dataTables.min.css') }}"> --}}
 	<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datatables/dataTables.bootstrap.min.css') }}">
 @endsection
 
@@ -13,20 +14,10 @@
 					<!-- Content Header (Page header) -->
 					<div class="box-header with-border">
 						<h3 class="box-title">
-							<i class="fa fa fa-newspaper-o"></i> LIST POST
+							<i class="fa fa fa-newspaper-o"></i> RECYCLE BIN ( POSTS )
 						</h3>
 					</div>
 					<div class="box-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="pull-left bottom">
-									<a href="{{ route('admin.posts.create') }}" class="btn btn-primary btn-circle">
-										<i class="fa fa-plus"></i>Thêm mới
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
 						<div >
 							<div class="row">
 								<div class="col-lg-12">
@@ -60,27 +51,26 @@
 	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/jquery.dataTables.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/dataTables.bootstrap.min.js') }}"></script>
 	<script type="text/javascript">
-		
 	    $(function () {
 			var table = $('#posts-table').DataTable( {
 				processing: true,
 				serverSide: true,
 				responsive:true,
-				"ajax": '{!! route('admin.categories.json.posts', $category_id) !!}',
+				"ajax": '{!! route('admin.recycleBin.posts.json.listPost') !!}',
 				"columns": [
-					{ "data": "id"},
-					{ "data": "title"},
-					{ "data": "created_at" },
+					{"data": "id"},
+					{"data": "title"},
+					{"data": "created_at" },
 					{"data" : "is_featured" },
 					{"data": "status"},
 					{ "data": "action", orderable: false, searchable: false}
 				]
-			} );
+			} ); 
 
 			$('#posts-table').on('click', '.delete-post',function(){
 				swal({
 				  title: "Are you sure?",
-				  text: "Nếu bấm chọn xóa, bài viết sẽ bị xóa!",
+				  text: "Nếu bấm chọn xóa, bài viết sẽ mất vĩnh viễn khỏi hệ thống!",
 				  icon: "warning",
 				  buttons: true,
 				  dangerMode: true,
@@ -89,10 +79,9 @@
 					if (willDelete) {
 					    $.ajax({
 			    			method: "POST",
-			    			
-			    			url: '{{ url('/admin/posts') }}'+'/'+$(this).siblings('input[name="id"]').val(),
+			    			url: '{!! route('admin.recycleBin.posts.delete') !!}',
 			    			data: { 
-			    				// id: $(this).siblings('input[name="id"]').val(), 
+			    				id: $(this).siblings('input[name="id"]').val(), 
 			    				_token : $('meta[name="csrf-token"]').attr('content'),
 			    				_method : "DELETE"
 			    			}
@@ -116,5 +105,6 @@
 				});
 		    });
 	    });
+
 	</script>
 @endsection
