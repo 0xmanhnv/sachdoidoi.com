@@ -9,6 +9,7 @@ use App\Models\Post;
 use Validator;
 use App\Http\Requests\StoreBlogPost;
 use Auth;
+use App\Models\Tagged;
 
 class PostController extends Controller
 {
@@ -163,18 +164,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::where('id', $id)->delete();
-
+        $post = Post::where('id', $id)->with('tagged')->first();
+        $post->untag();
+        Post::where('id', $id)->with('tagged')->delete();
+        
         return redirect()->back();
     }
-
-    // public function destroyAjax(Request $request)
-    // {
-    //     Post::where('id', $request->input('id'))->delete();
-    //     // ->update([
-    //     //     'is_trash' => 1,
-    //     //     'status'   => 0
-    //     // ]);
-    //     return redirect()->back();
-    // }
 }

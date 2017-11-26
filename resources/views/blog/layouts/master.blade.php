@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/customer.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/loader.css') }}">
         {{-- add css --}}
-        @yield('css')
+        @yield('head')
     </head>
     <body>
         {{-- loader --}}
@@ -58,6 +58,9 @@
                     {{-- content --}}
                     @yield('content')
                     {{-- end content --}}
+                    {{-- sidebar right --}}
+                    @yield('sidebarRight')
+                    {{-- end sidebar right --}}
                 </div>
             </section>
 

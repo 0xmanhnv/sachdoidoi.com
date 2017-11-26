@@ -93,3 +93,42 @@ a {
         margin-left: 0px;
         min-height: 100%;
     }
+
+/** 
+ * ********************INFO POST
+ */
+.view_count{
+    display: inline-block; 
+    margin-left: 10px;
+}
+.comment_count{
+    display: inline-block; 
+    margin-left: 10px;
+}
+
+/**
+ * panel ***********
+ */
+.bg-color {
+}
+.bg-4 {
+    background: #333745;
+}
+.sidebar-heading {
+    font-weight: bold;
+    text-align: center;
+    color: white !important;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.line-bottom {
+    border-bottom: 1px dashed #777;
+}
+.sdd_module_1 {
+    margin-bottom: 26px;
+    padding-bottom: 10px;
+}

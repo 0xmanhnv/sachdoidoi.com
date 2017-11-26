@@ -1,11 +1,9 @@
-@extends('admin.layouts.master')
+<?php $__env->startSection('head'); ?>
+	
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('admin_assets/css/datatables/dataTables.bootstrap.min.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('head')
-	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datatables/jquery.dataTables.min.css') }}"> --}}
-	<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/datatables/dataTables.bootstrap.min.css') }}">
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
@@ -27,7 +25,6 @@
 								              <tr>
 								                <th class="text-center">#</th>
 								                <th class="text-center">Tên</th>
-								                <th class="text-center">Ngày tạo</th>
 								                <th class="text-center">Hành động</th>
 								              </tr>
 								            </thead>
@@ -43,22 +40,21 @@
 		<!-- Main row -->
 	</section>
 	<!-- /.content -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
-	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/jquery.dataTables.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/dataTables.bootstrap.min.js') }}"></script>
+<?php $__env->startSection('footer'); ?>
+	<script type="text/javascript" src="<?php echo e(asset('admin_assets/js/datatables/jquery.dataTables.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('admin_assets/js/datatables/dataTables.bootstrap.min.js')); ?>"></script>
 	<script type="text/javascript">
 	    $(function () {
 			var table = $('#categories-table').DataTable( {
 				processing: true,
 				serverSide: true,
 				responsive:true,
-				"ajax": '{!! route('admin.recycleBin.json.listCategory') !!}',
+				"ajax": '<?php echo route('admin.recycleBin.datatables.listCategory'); ?>',
 				"columns": [
 					{"data": "id"},
 					{"data": "name"},
-					{"data": "created_at" },
 					{ "data": "action", orderable: false, searchable: false}
 				]
 			} ); 
@@ -75,7 +71,7 @@
 					if (willDelete) {
 					    $.ajax({
 			    			method: "POST",
-			    			url: '{!! route('admin.recycleBin.categories.delete') !!}',
+			    			url: '<?php echo route('admin.recycleBin.tags.delete'); ?>',
 			    			data: { 
 			    				id: $(this).siblings('input[name="id"]').val(), 
 			    				_token : $('meta[name="csrf-token"]').attr('content'),
@@ -103,4 +99,5 @@
 	    });
 
 	</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

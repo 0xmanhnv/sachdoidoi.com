@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
+use App\Models\Post;
 
 class TagController extends Controller
 {
@@ -44,9 +46,14 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $slug)
     {
-        //
+        // dd("sdfds");
+        $tag = Tag::where('id','=', $id, 'and', 'slug', '=', $slug)->first();
+
+        $posts = Post::withAllTags([$tag->name])->paginate(5);
+
+        return view('blog.tag.detail', compact('tag', 'posts'));
     }
 
     /**

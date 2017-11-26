@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('blog.index');
-});
+Route::get('/', 'Blog\BlogController@index');
 
 /**
  * admin auth
@@ -39,8 +37,7 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 		 */
 		Route::prefix('posts')->group(function(){
 			Route::get('/', 'Admin\RecycleBinController@posts')->name('admin.recycleBin.posts');
-			Route::get('json/list-post', 'Admin\RecycleBinController@jsonListPost')->name('admin.recycleBin.posts.json.listPost');
-			// admin/recycle-bin/undo
+			Route::get('json/list-post', 'Admin\RecycleBinController@datatablesListPost')->name('admin.recycleBin.posts.json.listPost');
 			Route::put('undo', 'Admin\RecycleBinController@undoPost')->name('admin.recycleBin.posts.undoPost');
 			Route::delete('delete', 'Admin\RecycleBinController@deleteForeverPost')->name('admin.recycleBin.posts.delete');
 		});
@@ -50,9 +47,19 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 		 */
 		Route::prefix('categories')->group(function(){
 			Route::get('/', 'Admin\RecycleBinController@categories')->name('admin.recycleBin.categories');
-			Route::get('json/list-category', 'Admin\RecycleBinController@jsonListCategory')->name('admin.recycleBin.posts.json.listCategory');
-			Route::put('undo', 'Admin\RecycleBinController@undoCategory')->name('admin.recycleBin.posts.undoCategory');
+			Route::get('json/list-category', 'Admin\RecycleBinController@datatablesListCategory')->name('admin.recycleBin.json.listCategory');
+			Route::put('undo', 'Admin\RecycleBinController@undoCategory')->name('admin.recycleBin.categories.undoCategory');
 			Route::delete('delete', 'Admin\RecycleBinController@deleteForeverCategory')->name('admin.recycleBin.categories.delete');
+		});
+
+		/**
+		 * admin/recycle-bin/tags
+		 */
+		Route::prefix('tags')->group(function(){
+			Route::get('/', 'Admin\RecycleBinController@tags')->name('admin.recycleBin.tags');
+			Route::get('datatables/list-tag', 'Admin\RecycleBinController@datatablesListTag')->name('admin.recycleBin.datatables.listCategory');
+			Route::put('undo', 'Admin\RecycleBinController@undoTag')->name('admin.recycleBin.tags.undoTag');
+			Route::delete('delete', 'Admin\RecycleBinController@deleteForeverTag')->name('admin.recycleBin.tags.delete');
 		});
 	});
 
@@ -96,10 +103,13 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 	 */
 	Route::prefix('tags')->group(function(){
 		Route::get('datatables/list-tag', 'Admin\TagController@datatablesListTag')->name('admin.tags.datatables.list');
+		Route::get('json/listTagName.json', 'Admin\TagController@jsonListTagName')->name('admin.tags.json.listTagName');
 	});
 	Route::resource('tags', 'Admin\TagController', ['names' => [
 		'index' 	=> 'admin.tags.index',
-		'store'		=> 'admin.tags.store'
+		'store'		=> 'admin.tags.store',
+		'destroy'	=> 'admin.tags.destroy',
+		'edit'		=> 'admin.tags.edit'
 	]]);
 
 	/**
@@ -121,28 +131,22 @@ Route::group(['prefix' => 'blog'], function(){
 	 * search
 	 */
 	Route::get('/search', 'Blog\BlogController@showResultSearch')->name('blog.search');
-
-	// Route::get('post/{slug}/{id}', 'Blog\BlogController@showDetailPost')->name('blog.post');
-	// Route::get('category/{id}/{slug}', 'Blog\BlogController@showDetailCategory')->name('blog.category');
-
-	// Route::get('tag/{id}/{slug}', 'Blog\BlogController@showDetailTag');
-
-	// Route::get('author/{id}', 'Blog\BlogController@showDetailAuthor')->name('blog.author');
+	Route::get('tag/{id}/{slug}', 'Blog\TagController@show')->name('blog.tag.show');
 
 
 	/**
 	 * blog/posts
 	 */
-	Route::get('posts', 'Blog\BlogController@posts');
-	Route::prefix('/')->group(function(){
+	// Route::get('posts', 'Blog\BlogController@posts');
+	Route::prefix('post')->group(function(){
 		// Route::get('/', 'Blog\PostController@index')->name('blog.post.index');
-		Route::get('{slug}', 'Blog\PostController@detail')->name('blog.post.detail');
+		Route::get('{slug}', 'Blog\PostController@detail')->middleware('filter.viewpost')->name('blog.post.detail');
 	});
 
 	/**
 	 * blog/category
 	 */
-	Route::get('categories', 'Blog\BlogController@categories');
+	// Route::get('categories', 'Blog\BlogController@categories');
 	Route::prefix('category')->group(function(){
 		// Route::get('/', 'Blog\CategoryController@index');
 		Route::get('{id}/{slug}', 'Blog\CategoryController@detail')->name('blog.category.detail');

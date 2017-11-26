@@ -404,6 +404,7 @@
   <script type="text/javascript" src="<?php echo e(asset('admin_assets/js/ckeditor/ckeditor.js')); ?>"></script>
   <script type="text/javascript" src="<?php echo e(asset('admin_assets/js/ckeditor/CustomEditor.js')); ?>"></script>
   <script type="text/javascript" src="<?php echo e(asset('js/bootstrap-tagsinput.min.js')); ?>"></script>
+  <script type="text/javascript" src="<?php echo e(asset('js/typeahead.bundle.js')); ?>"></script>
   <script>
     $(function(){
       $.ajaxSetup({

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use \Event;
 
 class PostController extends Controller
 {
@@ -40,8 +41,8 @@ class PostController extends Controller
                 )
                 ->get()
                 ->first();
+        Event::fire('posts.view', $post);
         
-        // dd($id);
         return view('blog.post.detail',[
             'post' => $post,
         ]);

@@ -64,16 +64,12 @@ class BlogController extends Controller
      * @return [type]           [description]
      */
     public function showResultSearch(Request $request){
+
         $tuKhoa =  $request->Input('q');
 
         if($tuKhoa != ""){
-            $posts = Post::where('status', 1)
-                        ->where(function($query) use ($tuKhoa) {
-                            return $query->where('title', 'like', "%$tuKhoa%")
-                                        ->orWhere('description', 'like', "%$tuKhoa%");
-                        })
-                        ->take(30)
-                        ->paginate(5);
+            $posts = Post::SearchByKeyword($tuKhoa)->take(30)->paginate(5);
+
             $posts->setPath('?q='.$tuKhoa);
 
             return view('blog.search', [
@@ -85,75 +81,5 @@ class BlogController extends Controller
             'tuKhoa' => $tuKhoa
             ]);
         }
-    }
-
-    /**
-     * post detail
-     * @param  [type] $slug [description]
-     * @param  [type] $id   [description]
-     * @return [type]       [description]
-     */
-    public function showDetailPost($id, $slug){
-        $post = Post::where(
-                'id', '=', $id,
-                'and', 
-                'slug', '=', $slug
-                )
-                ->get()
-                ->first();
-        
-
-        return view('blog.post.detail',[
-            'post' => $post,
-        ]);
-    }
-
-    /**
-     * get category = slug and id
-     * 
-     */
-    public function showDetailCategory($id, $slug){
-        $category = Category::where(
-                    'id', '=', $id,
-                    'and',
-                    'status', '=', 1
-                    )
-                    ->with(['posts' => function($queryPosts){
-                        $queryPosts->with(['author' => function($queryAuthor){
-                            $queryAuthor->select('id','name');
-                        }]);
-                    }])
-                    ->get()
-                    ->first();
-
-        return view('blog.category.listPost', [
-            'posts' => $category->posts,
-            'category' => $category
-        ]);
-    }
-
-    /**
-     * Post of author
-     */
-    public function showDetailAuthor($id){
-        $user = User::find($id)->first();
-
-
-        return view('blog.profile.index', [
-            'user' => $user,
-        ]);
-    }
-
-    public function showDetailTag($id, $slug){
-        $tag = Tag::where(
-            'id', '=', $id,
-            'and',
-            'slug', '=', $slug
-        )
-        ->get()->first();
-
-        return view('blog.tag', [
-            'tag' => $tag,
-        ]);
     }
 }

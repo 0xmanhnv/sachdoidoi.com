@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use View;
 use App\Models\Category;
+use App\Models\Post;
 use \Conner\Tagging\Model\Tag;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,13 @@ class AppServiceProvider extends ServiceProvider
          * share tags
          */
         View::share('tags', Tag::all());
+
+        /**
+         * bai viet xem nhieu
+         */
+        // Popular posts
+        View::share('popularPosts', Post::where('status', '=', 1)->orderBy('view_count', 'desc')->limit(5)->get());
+        
     }
 
     /**

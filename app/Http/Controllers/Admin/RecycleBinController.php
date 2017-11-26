@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tagged;
+use App\Models\Tag;
 
 class RecycleBinController extends Controller
 {
@@ -18,18 +20,25 @@ class RecycleBinController extends Controller
     }
 
     public function undoPost(Request $request){
+      Tagged::onlyTrashed()
+                ->where('taggable_id','=' ,$request->input('id'), 'and', 'taggable_type', '=', Post::getUrlObj())
+                ->restore();
+
     	Post::where('id', $request->input('id'))->restore();
 
     	return redirect()->back();
     }
 
     public function deleteForeverPost(Request $request){
+      Tagged::onlyTrashed()
+                ->where('taggable_id','=' ,$request->input('id'), 'and', 'taggable_type', '=', Post::getUrlObj())
+                ->forceDelete();
     	Post::where('id', $request->input('id'))->forceDelete();
     	
     	return redirect()->back();
     }
 
-    public function jsonListPost(){
+    public function datatablesListPost(){
     	$posts = Post::onlyTrashed()->get();
 
       return Datatables($posts)
@@ -79,13 +88,13 @@ class RecycleBinController extends Controller
       return redirect()->back();
     }
 
-    public function jsonListCategory(){
+    public function datatablesListCategory(){
       $categories = Category::onlyTrashed()->get();
 
       return Datatables($categories)
         ->addColumn('action', function ($category) {
           return '
-            <form action="'.route('admin.recycleBin.posts.undoCategory').'" method="post" style="display: inline-block;">
+            <form action="'.route('admin.recycleBin.categories.undoCategory').'" method="post" style="display: inline-block;">
               <input type="hidden" name="_token" value="'.csrf_token().'">
               <input type="hidden" name="_method" value="PUT">
               <input type="hidden" name="id" value="'.$category->id.'">
@@ -93,7 +102,7 @@ class RecycleBinController extends Controller
                 <i class="fa fa-undo" aria-hidden="true"></i>
               </button>
             </form>
-            <form action="'.route('admin.recycleBin.posts.delete').'" method="post" style="display: inline-block;">
+            <form action="'.route('admin.recycleBin.categories.delete').'" method="post" style="display: inline-block;">
               <input type="hidden" name="_token" value="'.csrf_token().'">
               <input type="hidden" name="_method" value="DELETE">
               <input type="hidden" name="id" value="'.$category->id.'">
@@ -104,5 +113,52 @@ class RecycleBinController extends Controller
             ';
         })
         ->make(true);
+    }
+
+    /**
+     * recyclebin tags *****************************************
+     */
+    
+    public function tags(){
+      return view('admin.tag.recycleBin');
+    }
+
+    public function datatablesListTag(){
+      $tags = Tag::onlyTrashed()->get();
+
+      return Datatables($tags)
+        ->addColumn('action', function ($tag) {
+          return '
+            <form action="'.route('admin.recycleBin.tags.undoTag').'" method="post" style="display: inline-block;">
+              <input type="hidden" name="_token" value="'.csrf_token().'">
+              <input type="hidden" name="_method" value="PUT">
+              <input type="hidden" name="id" value="'.$tag->id.'">
+              <button type="submit" title="Click để khôi phục!" class="btn btn-xs btn-success">
+                <i class="fa fa-undo" aria-hidden="true"></i>
+              </button>
+            </form>
+            <form action="'.route('admin.recycleBin.tags.delete').'" method="post" style="display: inline-block;">
+              <input type="hidden" name="_token" value="'.csrf_token().'">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="id" value="'.$tag->id.'">
+              <button type="button" class="btn btn-xs btn-danger delete-post" title="Click để xóa vĩnh viễn!">
+                <i class="glyphicon glyphicon-remove"></i>
+              </button>
+            </form>
+            ';
+        })
+        ->make(true);
+    }
+    public function undoTag(Request $request){
+
+      Tag::where('id', $request->input('id'))->restore();
+
+      return redirect()->back();
+    }
+
+    public function deleteForeverTag(Request $request){
+      Tag::where('id', $request->input('id'))->forceDelete();
+      
+      return redirect()->back();
     }
 }

@@ -102,7 +102,7 @@
 													<select class="form-control" id="sel1" name="category_id">
 														<?php if(isset($categories)): ?>
 															<?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-																<option value="<?php echo e($category->id); ?>" <?php echo e($category->id == $post->category->id ? 'selected' : ''); ?>>
+																<option value="<?php echo e($category->id); ?>" <?php echo e($category->id == $post->category['id'] ? 'selected' : ''); ?>>
 																	<?php echo e($category->name); ?>
 
 																</option>

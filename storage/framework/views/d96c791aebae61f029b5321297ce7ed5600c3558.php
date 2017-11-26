@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo e(asset('blog_assets/css/customer.css')); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo e(asset('blog_assets/css/loader.css')); ?>">
         
-        <?php echo $__env->yieldContent('css'); ?>
+        <?php echo $__env->yieldContent('head'); ?>
     </head>
     <body>
         
@@ -57,6 +57,9 @@
                 <div class="container">
                     
                     <?php echo $__env->yieldContent('content'); ?>
+                    
+                    
+                    <?php echo $__env->yieldContent('sidebarRight'); ?>
                     
                 </div>
             </section>

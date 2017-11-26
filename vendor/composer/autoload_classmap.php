@@ -38,6 +38,8 @@ return array(
     'App\\Image' => $baseDir . '/app/Image.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
+    'App\\Models\\Tag' => $baseDir . '/app/Models/Tag.php',
+    'App\\Models\\Tagged' => $baseDir . '/app/Models/Tagged.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

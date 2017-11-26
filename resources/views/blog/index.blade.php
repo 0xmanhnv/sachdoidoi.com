@@ -28,16 +28,27 @@
                                     </a>
                                     <span class="POSTMETAINLINE postMetaInline--supplemental">
                                         {{ $post->created_at->diffForHumans() }}
+                                        <div class="view_count">
+                                            <i class="fa fa-eye" aria-hidden="true"></i> {{ $post->view_count }}
+                                        </div>
+                                        <div class="comment_count">
+                                            <a href="{{ route('blog.post.detail', [$post->slug]) }}#comments">
+                                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                                <span class="fb-comments-count" data-href="{{ route('blog.post.detail', [$post->slug]) }}">0</span>
+                                            </a>
+                                        </div>
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <img src="{{ $post->thumbnail }}" style="min-width: 100%; max-width: 100%;" alt="{{ $post->title }}">
+                    @if($post->thumbnail)
+                        <div class="col-xs-12">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <img src="{{ $post->thumbnail }}" style="min-width: 100%; max-width: 100%;" alt="{{ $post->title }}">
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="col-xs-12">
                         <a href="{{ route('blog.post.detail', [$post->slug]) }}">
                             <h3 class="title">{{ $post->title }}</h3>
@@ -54,55 +65,9 @@
             </div>
         @endif
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4">
-        {{-- categories --}}
-         @if(isset($categories))
-            <div class="panel panel-custome">
-                <div class="panel-heading bg-success">
-                    <h3 class="panel-title text-center" style="line-height: 30px; font-weight: bold;">
-                        DANH MỤC
-                    </h3>
-                </div>
-                <div class="panel-body panel-body-custome panel-body-facebook">
-                    <ul class="list list--withIcon list--withTitleSubtitle">
-                        @foreach ($categories as $category)
-                            <li class="list-item">
-                                <button class="button button--circle u-disablePointerEvents">
-                                    <span class="list-index">
-                                        <img src="{{ $category->thumbnail }}" class="thumbnail-category">
-                                    </span>
-                                </button>
-                                <div class="list-itemInfo">
-                                    <h4 class="list-itemTitle">
-                                        <a href="{{ route('blog.category.detail', [$category->id, $category->slug]) }}" class="link  link-custome link--primary u-accentColor--textNormal"> 
-                                            {{ $category->name }}
-                                        </a>
-                                    </h4>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
-        {{-- end categories --}}
+@endsection
 
-        {{-- Tags --}}
-        @if(isset($tags)) 
-            <div class="panel panel-custome">
-                <div class="panel-heading bg-info">
-                    <h3 class="panel-title text-center" style="line-height: 30px; font-weight: bold;">
-                        Tags
-                    </h3>
-                </div>
-                <div class="panel-body panel-body-custome panel-body-facebook">
-                    @foreach ($tags as $tag)
-                        <a href="{{ url('blog/tag/'.$tag->id.'/'.$tag->slug) }}" class="tag">{{ $tag->name }}</a>
-                    @endforeach
-                </div>
-            </div>
-        @endif
-        {{-- end tags --}} 
-    </div>
+@section('sidebarRight')
+    @include('blog.layouts.sidebarRight')
 @endsection
 

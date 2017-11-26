@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 
 class CategoryController extends Controller
 {
@@ -29,18 +30,11 @@ class CategoryController extends Controller
                     'slug', '=', $slug,
                     'and',
                     'status', '=', 1
-                    )
-                    ->with(['posts' => function($queryPosts){
-                        $queryPosts->with(['author' => function($queryAuthor){
-                            $queryAuthor->select('id','name');
-                        }]);
-                    }])
-                    ->get()
-                    ->first();
+                    )->firstOrFail();
+        $posts = Post::where(
+                    'category_id', '=', $category->id 
+                )->paginate(5);
 
-        return view('blog.category.detail', [
-            'posts' => $category->posts,
-            'category' => $category
-        ]);
+        return view('blog.category.detail', compact('category', 'posts'));
     }
 }

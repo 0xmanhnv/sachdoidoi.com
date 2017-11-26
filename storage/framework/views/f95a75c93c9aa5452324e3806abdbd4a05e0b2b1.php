@@ -1,12 +1,12 @@
 <?php $__env->startSection('title'); ?>
-    <?php echo e("category || " . $category->name); ?>
+    <?php echo e("tag || " . $tag->name); ?>
 
 <?php $__env->stopSection(); ?>
 
 
 <?php $__env->startSection('content'); ?>
     <div class="col-xs-12 col-sm-8 col-md-8">
-        <div class="row well text-center "><h3>Category: <strong><?php echo e($category->name); ?></strong></h3></div>
+        <div class="row well text-center "><h3>Tag: <strong><?php echo e($tag->name); ?></strong></h3></div>
         <?php if(isset($posts)): ?>
             <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <article class="row article">

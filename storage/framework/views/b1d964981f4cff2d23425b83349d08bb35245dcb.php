@@ -120,9 +120,8 @@
 					    $.ajax({
 			    			method: "POST",
 			    			
-			    			url: '<?php echo e(url('/admin/categories')); ?>'+'/'+$(this).siblings('input[name="id"]').val(),
-			    			data: { 
-			    				// id: $(this).siblings('input[name="id"]').val(), 
+			    			url: '<?php echo e(url('/admin/tags')); ?>'+'/'+$(this).siblings('input[name="id"]').val(),
+			    			data: {  
 			    				_token : $('meta[name="csrf-token"]').attr('content'),
 			    				_method : "DELETE"
 			    			}

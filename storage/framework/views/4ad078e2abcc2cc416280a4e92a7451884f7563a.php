@@ -1,4 +1,4 @@
-<?php $__env->startSection('css'); ?>
+<?php $__env->startSection('head'); ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('blog_assets/css/author.css')); ?>">
 <?php $__env->stopSection(); ?>
 

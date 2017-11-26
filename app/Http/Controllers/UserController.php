@@ -33,7 +33,6 @@ class UserController extends Controller
 
             $user = User::where('id', Auth::user()->id)->first();
 
-            // dd($user);
             return view('user.profile', compact('user'));
         }else{
             return redirect('blog');

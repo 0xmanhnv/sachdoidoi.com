@@ -52,7 +52,7 @@
 				processing: true,
 				serverSide: true,
 				responsive:true,
-				"ajax": '<?php echo route('admin.recycleBin.posts.json.listCategory'); ?>',
+				"ajax": '<?php echo route('admin.recycleBin.json.listCategory'); ?>',
 				"columns": [
 					{"data": "id"},
 					{"data": "name"},

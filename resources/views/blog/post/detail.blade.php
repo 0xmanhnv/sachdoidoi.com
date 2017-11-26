@@ -13,15 +13,50 @@
 {{-- end add meta --}}
 {{-- {{ dd($post) }} --}}
 @section('content')
-	<div class="col-xs-12 col-sm-8 col-md-8">
-		@if(isset($post))
+	@if(isset($post))
+		<div class="col-xs-12 col-sm-8 col-md-8">
 		    <div class="post-detail-box">
-		    	<h1 class="title">{{ $post->title }}</h1>
-		    	<div class="img-post">
-		    		<div class="embed-responsive embed-responsive-16by9">
-		    			<img src="{{ $post->thumbnail }}">
-		    		</div>
-		    	</div>
+		    	<div class="detail-post-info">
+			        <div class="block-postMeta postMeta-previewHeader">
+			            <div class="u-floatLeft">
+			                <div class="postMetaInline-avatar">
+			                    <a class="link avatar u-color--link" href="#">
+			                        <img class="img-responsive avatar-image u-xs-size32x32 u-sm-size36x36" src="{{ $post->author['avatar'] }}">
+			                    </a>
+			                </div>
+			                <div class="postMetaInline-feedSummary">
+			                    <a class="link link--darken link--accent u-accentColor--textNormal u-accentColor--textDarken u-color--link user-link" href="{{ route('user.detail',$post->author['id']) }}">
+			                        {{ $post->author['name'] }}
+			                    </a>
+			                    <span class="POSTMETAINLINE postMetaInline--supplemental">
+			                        {{ $post->created_at->diffForHumans() }}
+			                        <div class="view_count">
+                                        <i class="fa fa-eye" aria-hidden="true"></i> {{ $post->view_count }}
+                                    </div>
+                                    <div class="comment_count">
+                                    	<a href="{{ route('blog.post.detail', [$post->slug]) }}#comments">
+	                                    	<i class="fa fa-commenting-o" aria-hidden="true"></i>
+	                                    	<span class="fb-comments-count" data-href="{{ url()->current() }}">0</span>
+	                                    </a>
+                                    </div>
+			                    </span>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="detail-post-headding">
+			    	<h1 class="title">{{ $post->title }}</h1>
+			    	<div class="detail-post-description">
+			    		<blockquote><p><i>{{ $post->description }}</i></p></blockquote>
+			    	</div>
+			    </div>
+			    @if($post->thumbnail)
+			    	<div class="img-post">
+			    		<div class="embed-responsive embed-responsive-16by9">
+			    			<img src="{{ $post->thumbnail }}">
+			    		</div>
+			    	</div>
+			   	@endif
 		    	<div class="content-post">
 		    		{!!  $post->content !!}
 		    	</div>
@@ -62,67 +97,15 @@
 			    			</div>
 			    		</div>
 			    	</div>
-			    	<div class="share">
+			    	<div class="share" id="comments">
 			    		<div class="fb-comments" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5"></div>
 			    	</div>
 			    </div>
 		    </div>
-	    @endif
-	</div>
-	
-	{{-- sidebar right --}}
-    <div class="col-xs-12 col-sm-4 col-md-4">
-        {{-- categories --}}
-         @if(isset($categories))
-            <div class="panel panel-custome">
-                <div class="panel-heading bg-success">
-                    <h3 class="panel-title text-center" style="line-height: 30px; font-weight: bold;">
-                        DANH MỤC
-                    </h3>
-                </div>
-                <div class="panel-body panel-body-custome panel-body-facebook">
-                    <ul class="list list--withIcon list--withTitleSubtitle">
-                        @foreach ($categories as $category)
-                            <li class="list-item">
-                                <button class="button button--circle u-disablePointerEvents">
-                                    <span class="list-index">
-                                        <img src="https://giaphiep.com/images/laravel.png">
-                                    </span>
-                                </button>
-                                <div class="list-itemInfo">
-                                    <h4 class="list-itemTitle">
-                                        <a href="{{ route('blog.category.detail', [$category->id, $category->slug ]) }}" class="link  link-custome link--primary u-accentColor--textNormal"> 
-                                            {{ $category->name }}
-                                        </a>
-                                    </h4>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
-        {{-- end categories --}}
+		</div>
+	@endif
+@endsection
 
-        {{-- Tags --}}
-        @if(isset($tags)) 
-            <div class="panel panel-custome">
-                <div class="panel-heading bg-info">
-                    <h3 class="panel-title text-center" style="line-height: 30px; font-weight: bold;">
-                        Tags
-                    </h3>
-                </div>
-                <div class="panel-body panel-body-custome panel-body-facebook">
-                    @foreach ($tags as $tag)
-                        <a href="{{ url('blog/tag/'.$tag->id.'/'.$tag->slug) }}" class="tag">{{ $tag->name }}</a>
-                    @endforeach
-                </div>
-            </div>
-        @endif
-        {{-- end tags --}}
-
-        {{-- add widgets --}}
-        @yield('widgets')
-        {{-- end add widgets --}}
-    </div>
+@section('sidebarRight')
+    @include('blog.layouts.sidebarRight')
 @endsection

@@ -11,6 +11,11 @@ class Post extends Model
     use \Conner\Tagging\Taggable;
 
     protected $dates = ['deleted_at'];
+    protected static $urlObj = 'App\Models\Post';
+
+    public static function getUrlObj(){
+      return self::$urlObj;
+    }
 
     protected $fillable = [
     	'title', 'thumbnail', 'description', 'content', 'user_id', 'category_id', 'slug', 'status'
@@ -33,4 +38,20 @@ class Post extends Model
    			'status' => 0,
    		]);
    	}
+
+    /**
+     * search psot
+     * @param  [type] $query   
+     * @param  [type] $keyword 
+     */
+    public static function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("title", "LIKE","%$keyword%")
+                    ->orWhere("description", "LIKE", "%$keyword%");
+            });
+        }
+        return $query;
+    }
 }

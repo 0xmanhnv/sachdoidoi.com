@@ -121,9 +121,8 @@
 					    $.ajax({
 			    			method: "POST",
 			    			
-			    			url: '{{ url('/admin/categories') }}'+'/'+$(this).siblings('input[name="id"]').val(),
-			    			data: { 
-			    				// id: $(this).siblings('input[name="id"]').val(), 
+			    			url: '{{ url('/admin/tags') }}'+'/'+$(this).siblings('input[name="id"]').val(),
+			    			data: {  
 			    				_token : $('meta[name="csrf-token"]').attr('content'),
 			    				_method : "DELETE"
 			    			}

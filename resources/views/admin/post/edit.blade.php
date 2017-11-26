@@ -103,7 +103,7 @@
 													<select class="form-control" id="sel1" name="category_id">
 														@if(isset($categories))
 															@foreach ($categories as $category)
-																<option value="{{ $category->id }}" {{ $category->id == $post->category->id ? 'selected' : '' }}>
+																<option value="{{ $category->id }}" {{ $category->id == $post->category['id'] ? 'selected' : '' }}>
 																	{{ $category->name }}
 																</option>
 															@endforeach

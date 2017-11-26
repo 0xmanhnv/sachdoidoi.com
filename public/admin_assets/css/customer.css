@@ -16,3 +16,10 @@ div.bottom{
 .modal-body img{
 	max-width: 100%;
 }
+
+/**
+ * bootstrap input
+ */
+.bootstrap-tagsinput{
+	width: 100%;
+}

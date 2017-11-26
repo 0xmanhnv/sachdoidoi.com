@@ -1,13 +1,13 @@
 @extends('blog.layouts.master')
 
 @section('title')
-    {{ "category || " . $category->name }}
+    {{ "tag || " . $tag->name }}
 @endsection
 
 
 @section('content')
     <div class="col-xs-12 col-sm-8 col-md-8">
-        <div class="row well text-center "><h3>Category: <strong>{{ $category->name }}</strong></h3></div>
+        <div class="row well text-center "><h3>Tag: <strong>{{ $tag->name }}</strong></h3></div>
         @if(isset($posts))
             @foreach ($posts as $post)
                 <article class="row article">

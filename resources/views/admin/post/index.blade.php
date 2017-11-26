@@ -50,6 +50,7 @@
 								                <th class="text-center">Ngày tạo</th>
 								                <th class="text-center">Featured</th>
 								                <th class="text-center">Trạng thái</th>
+								                <th class="text-center">Lượt xem</th>
 								                <th class="text-center">Hành động</th>
 								              </tr>
 								            </thead>
@@ -84,6 +85,7 @@
 					{ "data": "created_at" },
 					{"data" : "is_featured" },
 					{"data": "status"},
+					{"data": "view_count"},
 					{ "data": "action", orderable: false, searchable: false}
 				]
 			} );

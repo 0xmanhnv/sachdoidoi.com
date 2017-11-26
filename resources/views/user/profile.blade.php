@@ -1,6 +1,6 @@
 @extends('blog.layouts.master')
 
-@section('css')
+@section('head')
 	<link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/author.css') }}">
 @endsection
 

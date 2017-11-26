@@ -43,3 +43,8 @@ MAIN NAVIGATION</li>
         <i class="fa fa-bitbucket" aria-hidden="true"></i> <span class="title">Categories Trash</span>
     </a>
 </li>
+<li class="nav-item {{ (Request::is('admin/recycle-bin/tags*')) ? 'active open' : '' }}">
+    <a href="{{ route('admin.recycleBin.tags') }}" class="nav-link ">
+        <i class="fa fa-bitbucket" aria-hidden="true"></i> <span class="title">Tags Trash</span>
+    </a>
+</li>

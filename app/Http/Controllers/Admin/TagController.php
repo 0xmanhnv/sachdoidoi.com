@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use \Conner\Tagging\Model\Tag;
+use App\Models\Tag;
+use App\Models\Tagged;
 
 class TagController extends Controller
 {
@@ -26,7 +27,7 @@ class TagController extends Controller
                 return '       
                     <a href="'.route('admin.categories.show', $tag->id).'" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     <a href="categories/'.$tag->id.'/edit" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-edit"></i></a>
-                    <form action="categories/'.$tag->id.'" method="post" style="display: inline-block;">
+                    <form action="'.route('admin.tags.destroy', $tag->id).'" method="post" style="display: inline-block;">
                       <input type="hidden" name="_token" value="'.csrf_token().'">
                       <input type="hidden" name="_method" value="DELETE">
                       <input type="hidden" name="id" value="'.$tag->id.'">
@@ -37,8 +38,18 @@ class TagController extends Controller
             ->make(true);
     }
 
-    public function jsonListTag(){
+    public function datatablesListPost(){
+
+    }
+
+    public function jsonListTagName(){
         $tags = Tag::all();
+        // $data = array();
+
+        // foreach ($tags as $tag) {
+        //     $data[] = $tag['name'];
+        // }
+
 
         return response()->json($tags);
     }
@@ -89,7 +100,12 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::where('id', $id)->first();
+        // dd($tag->slug);
+        Tagged::where('tag_slug', $tag->slug)->forceDelete();
+        $tag->delete();
+
+        
     }
 
     /**
@@ -112,6 +128,11 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $tag = Tag::where('id', $id)->first();
+        Tagged::where('tag_slug', $tag->slug)->forceDelete();
+        $tag->delete();
+
+        return redirect()->back();
     }
 }
