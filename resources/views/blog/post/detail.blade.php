@@ -50,13 +50,13 @@
 			    		<blockquote><p><i>{{ $post->description }}</i></p></blockquote>
 			    	</div>
 			    </div>
-			    @if($post->thumbnail)
+			   {{--  @if($post->thumbnail)
 			    	<div class="img-post">
 			    		<div class="embed-responsive embed-responsive-16by9">
 			    			<img src="{{ $post->thumbnail }}">
 			    		</div>
 			    	</div>
-			   	@endif
+			   	@endif --}}
 		    	<div class="content-post">
 		    		{!!  $post->content !!}
 		    	</div>
@@ -97,6 +97,7 @@
 			    			</div>
 			    		</div>
 			    	</div>
+			    	<div class="clearfix"></div>
 			    	<div class="share" id="comments">
 			    		<div class="fb-comments" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5"></div>
 			    	</div>

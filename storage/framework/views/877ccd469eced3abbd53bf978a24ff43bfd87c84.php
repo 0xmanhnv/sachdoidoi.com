@@ -51,13 +51,7 @@
 			    		<blockquote><p><i><?php echo e($post->description); ?></i></p></blockquote>
 			    	</div>
 			    </div>
-			    <?php if($post->thumbnail): ?>
-			    	<div class="img-post">
-			    		<div class="embed-responsive embed-responsive-16by9">
-			    			<img src="<?php echo e($post->thumbnail); ?>">
-			    		</div>
-			    	</div>
-			   	<?php endif; ?>
+			   
 		    	<div class="content-post">
 		    		<?php echo $post->content; ?>
 
@@ -99,6 +93,7 @@
 			    			</div>
 			    		</div>
 			    	</div>
+			    	<div class="clearfix"></div>
 			    	<div class="share" id="comments">
 			    		<div class="fb-comments" data-href="<?php echo e(url()->current()); ?>" data-width="100%" data-numposts="5"></div>
 			    	</div>

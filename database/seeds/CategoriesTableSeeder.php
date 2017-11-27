@@ -14,15 +14,15 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->truncate();
 
-        $faker = Faker\Factory::create();
+        // $faker = Faker\Factory::create();
 
-        for ($i=0; $i < 5; $i++) { 
-        	Category::create([
-        		'name' => 'Danh muc '.$i,
-        		'thumbnail' => $faker->imageUrl($width = 640, $height = 480),
-        		'description' => $faker->text($maxNbChars = 500),
-        		'slug' =>$faker->slug(),
-        	]);
-        }
+        // for ($i=0; $i < 5; $i++) { 
+        // 	Category::create([
+        // 		'name' => 'Danh muc '.$i,
+        // 		'thumbnail' => $faker->imageUrl($width = 640, $height = 480),
+        // 		'description' => $faker->text($maxNbChars = 500),
+        // 		'slug' =>$faker->slug(),
+        // 	]);
+        // }
     }
 }

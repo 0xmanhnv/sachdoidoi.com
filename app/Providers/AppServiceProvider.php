@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         /**
          * share tags
          */
-        View::share('tags', Tag::all());
+        View::share('tags', Tag::where('count', '>=', 1)->get());
 
         /**
          * bai viet xem nhieu

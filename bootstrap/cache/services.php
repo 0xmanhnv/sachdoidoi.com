@@ -38,6 +38,7 @@
     34 => 'Unisharp\\Laravelfilemanager\\LaravelFilemanagerServiceProvider',
     35 => 'Intervention\\Image\\ImageServiceProvider',
     36 => 'Conner\\Tagging\\Providers\\TaggingServiceProvider',
+    37 => 'Weidner\\Goutte\\GoutteServiceProvider',
   ),
   'eager' => 
   array (
@@ -167,6 +168,7 @@
     'form' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
+    'goutte' => 'Weidner\\Goutte\\GoutteServiceProvider',
   ),
   'when' => 
   array (
@@ -210,6 +212,9 @@
     array (
     ),
     'Collective\\Html\\HtmlServiceProvider' => 
+    array (
+    ),
+    'Weidner\\Goutte\\GoutteServiceProvider' => 
     array (
     ),
   ),

@@ -13,17 +13,17 @@
                                 <img style="max-width: 100%;min-height: 50px;max-height: 100%;cursor: pointer;" src="<?php echo e($post->thumbnail); ?>"  class="thumnail">
                             </div>
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                <span class="meta-info">
-                                    <span><?php echo e($post->created_at->diffForHumans()); ?> / </span>
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    <span> <?php echo e($post->view_count); ?></span>
-                                </span>
                                 <h5 class="title">
                                     <a href="<?php echo e(route('blog.post.detail', [$post->slug])); ?>">
                                         <?php echo e($post->title); ?>
 
                                     </a>
                                 </h5>
+                                <span class="meta-info POSTMETAINLINE postMetaInline--supplemental">
+                                    <span><?php echo e($post->created_at->diffForHumans()); ?> / </span>
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <span> <?php echo e($post->view_count); ?></span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -70,14 +70,14 @@
         <div class="panel panel-custome">
             <div class="panel-heading bg-info">
                 <h3 class="panel-title text-center" style="line-height: 30px; font-weight: bold;">
-                    Tags
+                    TAGS
                 </h3>
             </div>
-            <div class="panel-body panel-body-custome panel-body-facebook">
+            
                 <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <a href="<?php echo e(route('blog.tag.show', [$tag->id,$tag->slug])); ?>" class="tag"><?php echo e($tag->name); ?></a>
+                    <a href="<?php echo e(route('blog.tag.show', [$tag->id,$tag->slug])); ?>"><?php echo e($tag->name); ?></a>, 
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
+            
         </div>
     <?php endif; ?>
     

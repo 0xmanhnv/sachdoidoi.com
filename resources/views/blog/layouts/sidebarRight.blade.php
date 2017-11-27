@@ -13,16 +13,16 @@
                                 <img style="max-width: 100%;min-height: 50px;max-height: 100%;cursor: pointer;" src="{{ $post->thumbnail }}"  class="thumnail">
                             </div>
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                <span class="meta-info">
-                                    <span>{{ $post->created_at->diffForHumans() }} / </span>
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    <span> {{ $post->view_count }}</span>
-                                </span>
                                 <h5 class="title">
                                     <a href="{{ route('blog.post.detail', [$post->slug]) }}">
                                         {{ $post->title }}
                                     </a>
                                 </h5>
+                                <span class="meta-info POSTMETAINLINE postMetaInline--supplemental">
+                                    <span>{{ $post->created_at->diffForHumans() }} / </span>
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <span> {{ $post->view_count }}</span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -68,14 +68,14 @@
         <div class="panel panel-custome">
             <div class="panel-heading bg-info">
                 <h3 class="panel-title text-center" style="line-height: 30px; font-weight: bold;">
-                    Tags
+                    TAGS
                 </h3>
             </div>
-            <div class="panel-body panel-body-custome panel-body-facebook">
+            {{-- <div class="panel-body panel-body-custome panel-body-facebook"> --}}
                 @foreach ($tags as $tag)
-                    <a href="{{ route('blog.tag.show', [$tag->id,$tag->slug]) }}" class="tag">{{ $tag->name }}</a>
+                    <a href="{{ route('blog.tag.show', [$tag->id,$tag->slug]) }}">{{ $tag->name }}</a>, 
                 @endforeach
-            </div>
+            {{-- </div> --}}
         </div>
     @endif
     {{-- end tags --}}

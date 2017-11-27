@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'vi',
 
     /*
     |--------------------------------------------------------------------------
@@ -191,6 +191,11 @@ return [
           */
         \Conner\Tagging\Providers\TaggingServiceProvider::class,
 
+        /**
+         * crawler
+         */
+        Weidner\Goutte\GoutteServiceProvider::class,
+
 
     ],
 
@@ -247,6 +252,10 @@ return [
          * file manager
          */
          'Image' => Intervention\Image\Facades\Image::class,
+         /**
+          * crawler
+          */
+         'Goutte' => Weidner\Goutte\GoutteFacade::class,
 
     ],
 
