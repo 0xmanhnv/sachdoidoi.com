@@ -11,11 +11,7 @@ class Post extends Model
     use \Conner\Tagging\Taggable;
 
     protected $dates = ['deleted_at'];
-    protected static $urlObj = 'App\Models\Post';
 
-    public static function getUrlObj(){
-      return self::$urlObj;
-    }
 
     protected $fillable = [
     	'title', 'thumbnail', 'description', 'content', 'user_id', 'category_id', 'slug', 'status'

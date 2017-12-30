@@ -20,18 +20,35 @@ class RecycleBinController extends Controller
     }
 
     public function undoPost(Request $request){
-      Tagged::onlyTrashed()
-                ->where('taggable_id','=' ,$request->input('id'), 'and', 'taggable_type', '=', Post::getUrlObj())
-                ->restore();
+      $tagged = Tagged::onlyTrashed()
+                ->where('taggable_id','=' ,$request->input('id'), 'and', 'taggable_type', '=', Post::class)
+                ->with('tag');
+      
 
-    	Post::where('id', $request->input('id'))->restore();
+      foreach ($tagged->get() as $tag) {
+        Tag::onlyTrashed()
+          ->where('slug', $tag->tag_slug)
+          ->restore();
+      }
+      $tagged->restore();
+      
+
+    	$post = Post::where('id', $request->input('id'))->with('tagged')->restore();
+
+
+      // dd($tags->tag());
+
+      // if($post){
+      //   Tag::onlyTrashed()
+      //       ->where();
+      // }
 
     	return redirect()->back();
     }
 
     public function deleteForeverPost(Request $request){
       Tagged::onlyTrashed()
-                ->where('taggable_id','=' ,$request->input('id'), 'and', 'taggable_type', '=', Post::getUrlObj())
+                ->where('taggable_id','=' ,$request->input('id'), 'and', 'taggable_type', '=', Post::class)
                 ->forceDelete();
     	Post::where('id', $request->input('id'))->forceDelete();
     	

@@ -65,7 +65,8 @@
                   <input type="checkbox" name="remember"> Remember Me
                 </label>
               </div>
-            </div><!-- /.col -->
+            </div>
+            <!-- /.col -->
             <div class="col-xs-4">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
             </div><!-- /.col -->

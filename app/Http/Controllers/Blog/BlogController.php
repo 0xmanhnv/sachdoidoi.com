@@ -27,7 +27,7 @@ class BlogController extends Controller
          * get post status = 1
          * @var [type]
          */
-        $posts = Post::where('status', '=', 1)->paginate(10);    
+        $posts = Post::where('status', '=', 1)->orderBy('id', 'desc')->paginate(10);    
         
         return view('blog.index',[
             'posts' => $posts,

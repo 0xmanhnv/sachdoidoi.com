@@ -29,6 +29,7 @@ class StoreBlogPost extends FormRequest
             'category_id'   => 'required',
             // 'slug' => 'required|unique:posts',
             'content' => 'required'
+            
         ];
     }
 

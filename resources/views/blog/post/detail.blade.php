@@ -74,11 +74,13 @@
 			    	<div class="share">
 			    		<h3 class="sd-title">
 			    			Tags:
-			    			@foreach ($post->tags as $tag)
-			    				<a href="{{ url('blog/tag/'.$tag->id.'/'.$tag->slug ) }}" class="tag">
-			    					<span>{{ $tag->name }}</span>
-			    				</a>
-			    			@endforeach
+			    			@if($post->tags)
+				    			@foreach ($post->tags as $tag)
+				    				<a href="{{ url('blog/tag/'.$tag->id.'/'.$tag->slug ) }}" class="tag">
+				    					<span>{{ $tag->name }}</span>
+				    				</a>
+				    			@endforeach
+			    			@endif
 			    		</h3>
 			    	</div>
 			    	<div class="share">

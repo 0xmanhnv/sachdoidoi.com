@@ -152,8 +152,3 @@ Route::get('profile', 'UserController@profile')->name('user.profile');
 Route::prefix('user')->group(function(){
 	Route::get('{id}', 'UserController@profile')->name('user.detail');
 });
-
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');

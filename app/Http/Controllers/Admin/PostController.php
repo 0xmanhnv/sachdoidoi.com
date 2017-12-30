@@ -166,7 +166,7 @@ class PostController extends Controller
     {
         $post = Post::where('id', $id)->with('tagged')->first();
         $post->untag();
-        Post::where('id', $id)->with('tagged')->delete();
+        Post::where('id', $id)->delete();
         
         return redirect()->back();
     }

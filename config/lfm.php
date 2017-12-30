@@ -40,6 +40,7 @@ return [
     | Working Directory
     |--------------------------------------------------------------------------
     */
+   
 
     // Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on.
     // You should create routes to serve images if it is not set to public.

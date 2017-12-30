@@ -21,7 +21,7 @@ class PostController extends Controller
          * join category _id
          * @var [type]
          */
-        $posts = Post::where('status', '==', 1)->paginate(10);    
+        $posts = Post::where('status', 1)->orderBy('id', 'desc')->paginate(10);    
         
         return view('blog.index',[
             'posts' => $posts,
