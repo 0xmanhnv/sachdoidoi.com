@@ -14,37 +14,43 @@ Admin template
 Via Composer
 
 ``` bash
-$ composer require giaphiep/productcrud
+$ git clone https://github.com/nguyenmanh1997/sachdoidoi.com.git
 ```
 
 ## Usage
+1. run commands install package’s
+``` bash
+$ composer install
+```
+
+coppy .env.example to .env 
 
 Method 1: Run
 
 ``` bash
-$ php artisan productcrud:install
+$ php artisan blog:install
 ```
 
 Method 2:
 
-1. In configs/app.php file, add the following to the providers array (optional in version >= 5.5)
-``` php
-GiapHiep\Productcrud\ProductcrudServiceProvider::class,
-Yajra\DataTables\DataTablesServiceProvider::class,
-
+1. Run commands
+``` bash
+$ php artisan key:generate
+$ php artisan migrate
+$ php artisan db:seed
 ```
-and in aliases array
-``` php
-'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-```
-
 2. Run commands to publish the package’s config and assets and database
 ``` bash
 $ php artisan vendor:publish
 $ php artisan migrate
 ```
 
-3. Go to  domain/product and check it. 
+3. Go to  domain/ and check it. 
+4. Go to  domain/admin and check it. 
+``` bash
+gmail: nguyenmanh0397@gmail.com
+password: 123456
+```
 
 
 ## Change log
@@ -63,11 +69,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 ## Security
 
-If you discover any security related issues, please email hiep.giapvan@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email nguyenmanh0397@gmail.com instead of using the issue tracker.
 
 ## Credits
 
-- [Giáp Hiệp][https://giaphiep.com]
+- [Nguyễn Mạnh][https://fb.com/nguyenmanh1997]
 
 ## License
 
