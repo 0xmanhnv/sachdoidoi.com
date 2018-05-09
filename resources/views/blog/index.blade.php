@@ -1,7 +1,7 @@
 @extends('blog.layouts.master')
 
 @section('title')
-    {{ "Nguyễn Mạnh" }}
+    {{ "Sách đổi đời" }}
 @endsection
 
 @section('content')

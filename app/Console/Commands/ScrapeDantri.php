@@ -7,6 +7,7 @@ use \Goutte;
 use App\Models\Post;
 use App\Models\Category;
 
+
 class ScrapeDantri extends Command
 {
     /**
