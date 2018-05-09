@@ -35,7 +35,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('admin.login')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -58,7 +58,6 @@ class LoginController extends Controller
     public function credentials($request)
     {
     	$data = $request->only('email', 'password');
-
     	$data['is_admin'] = 1;
     	$data['status'] = 1;
     	

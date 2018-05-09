@@ -13,14 +13,12 @@ class CreatePhonesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('phones')) {
-            Schema::create('phones', function (Blueprint $table) {
-                $table->increments('id');
-                $table->string('mobile')->nullable();
-                $table->integer('user_id')->unsigned();
-                $table->timestamps();
-            });
-        } 
+        Schema::create('phones', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('mobile')->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->timestamps();
+        });
     }
 
     /**

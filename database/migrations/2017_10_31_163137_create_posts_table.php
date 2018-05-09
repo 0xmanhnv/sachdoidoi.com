@@ -13,21 +13,26 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->collation = 'utf8_unicode_ci';
-            $table->charset = 'utf8';
+        if (!Schema::hasTable('posts')) {
+            Schema::create('posts', function (Blueprint $table) {
+                $table->collation = 'utf8_unicode_ci';
+                $table->charset = 'utf8';
 
-            $table->increments('id');
-            $table->string('title')->index();
-            $table->string('thumbnail')->nullable();
-            $table->mediumText('description')->nullable();
-            $table->longText('content')->nullable();
-            $table->string('slug')->unique();
-            $table->tinyInteger('status')->default(1)->comment('0. private, 1.public');
-            $table->integer('user_id')->unsigned();
-            $table->integer('category_id')->unsigned();
-            $table->timestamps();
-        });
+                $table->increments('id');
+                $table->string('title')->index();
+                $table->string('thumbnail')->nullable();
+                $table->mediumText('description')->nullable();
+                $table->longText('content')->nullable();
+                $table->string('slug')->unique();
+                $table->tinyInteger('status')->default(1)->comment('0. private, 1.public');
+                $table->tinyInteger('is_featured')->default(0)->comment('0. no featured_post, 1.featured_post');
+                $table->integer('user_id')->unsigned();
+                $table->integer('category_id')->unsigned();
+                $table->integer('view_count')->default(0);
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**

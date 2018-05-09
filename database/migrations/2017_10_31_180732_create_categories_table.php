@@ -13,18 +13,20 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->collation = 'utf8_unicode_ci';
-            $table->charset = 'utf8';
-            
-            $table->increments('id');
-            $table->string('name')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->string('slug')->unique();
-            $table->mediumText('description')->nullable();
-            $table->tinyInteger('status')->default(1)->comment('0. private, 1.public');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('categories')) {
+            Schema::create('categories', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name')->nullable();
+                $table->tinyInteger('parent_id')->nullable()->comment('chứa id category parent');
+                $table->string('thumbnail')->nullable();
+                $table->string('slug')->unique();
+                $table->mediumText('description')->nullable();
+                $table->tinyInteger('status')->default(1)->comment('0. private, 1.public');
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
+        
     }
 
     /**
