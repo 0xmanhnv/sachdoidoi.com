@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use \Datatables;
+use Yajra\Datatables\Datatables;
 use App\Models\Post;
 use Validator;
 use App\Http\Requests\StoreBlogPost;
@@ -28,9 +28,7 @@ class PostController extends Controller
      * @return json ( datatables )
      */
     public function jsonListPost(){
-        $posts = Post::all();
-
-        return Datatables($posts)
+        return Datatables::of(Post::query())
             ->addColumn('action', function ($post) {
                 return '       
                     <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#detail-post-'.$post->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>

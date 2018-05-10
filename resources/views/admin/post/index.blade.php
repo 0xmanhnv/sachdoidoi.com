@@ -71,8 +71,7 @@
 @section('footer')
 	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/jquery.dataTables.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('admin_assets/js/datatables/dataTables.bootstrap.min.js') }}"></script>
-	<script type="text/javascript">
-		
+	<script type="text/javascript">	
 	    $(function () {
 			var table = $('#posts-table').DataTable( {
 				processing: true,
@@ -80,9 +79,9 @@
 				responsive:true,
 				"ajax": '{!! route('admin.posts.json.list') !!}',
 				"columns": [
-					{ "data": "id"},
-					{ "data": "title"},
-					{ "data": "created_at" },
+					{"data": "id"},
+					{"data": "title"},
+					{"data": "created_at" },
 					{"data" : "is_featured" },
 					{"data": "status"},
 					{"data": "view_count"},

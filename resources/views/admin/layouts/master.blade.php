@@ -34,6 +34,8 @@
   <link rel="stylesheet" href="{{ asset('admin_assets/css/daterangepicker.css') }}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('admin_assets/css/bootstrap3-wysihtml5.min.css') }}">
+  <!-- code codesnippet - text editor -->
+  <link href="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css') }}" rel="stylesheet"/>
   <!-- css customer -->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/customer.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tagsinput.css') }}">
@@ -404,8 +406,9 @@
    * editor
    * customer and default
    */ --}}
-  <script type="text/javascript" src="{{ asset('admin_assets/js/ckeditor/ckeditor.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('admin_assets/js/ckeditor/CustomEditor.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('vendor/ckeditor/CustomEditor.js') }}"></script>
+  <script src="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"/>
   <script type="text/javascript" src="{{ asset('js/bootstrap-tagsinput.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/typeahead.bundle.js') }}"></script>
   <script>

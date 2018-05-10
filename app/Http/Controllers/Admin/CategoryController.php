@@ -21,11 +21,7 @@ class CategoryController extends Controller
     }
 
     public function jsonListCategory(){
-
-        $categories = Category::all();
-
-
-        return Datatables($categories)
+        return Datatables(Category::query())
             ->addColumn('action', function ($category) {
                 return '       
                     <a href="'.route('admin.categories.show', $category->id).'" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>

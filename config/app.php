@@ -195,6 +195,10 @@ return [
          * crawler
          */
         Weidner\Goutte\GoutteServiceProvider::class,
+        /**
+         * Datatable laravel
+         */
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
 
     ],

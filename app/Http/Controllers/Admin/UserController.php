@@ -25,9 +25,7 @@ class UserController extends Controller
      * @return json ( datatables )
      */
     public function jsonListUser(){
-        $users = User::where('status', 1)->get();
-
-        return Datatables($users)
+        return Datatables(User::where('status', 1)->get())
         ->addColumn('action', function ($user) {
             return '       
                 <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#detail-user-'.$user->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
