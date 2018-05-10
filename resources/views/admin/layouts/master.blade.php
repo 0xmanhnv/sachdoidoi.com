@@ -408,7 +408,7 @@
    */ --}}
   <script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
   <script type="text/javascript" src="{{ asset('vendor/ckeditor/CustomEditor.js') }}"></script>
-  <script src="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"/>
+  <script src="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/bootstrap-tagsinput.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/typeahead.bundle.js') }}"></script>
   <script>

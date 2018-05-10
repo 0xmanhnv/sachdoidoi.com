@@ -10,7 +10,7 @@ class UpdateTagsTable extends Migration {
 		if (Schema::hasTable('tagging_tags')) {
 			Schema::table('tagging_tags', function ($table) {
 				$table->integer('tag_group_id')->unsigned()->nullable()->after('id');
-				$table->foreign('tag_group_id')->references('id')->on('tagging_tag_groups');
+				$table->foreign('tag_group_id')->references('id')->on('tagging_tag_groups')->onDelete('cascade')->onUpdate('cascade');
 			});
 		}
 

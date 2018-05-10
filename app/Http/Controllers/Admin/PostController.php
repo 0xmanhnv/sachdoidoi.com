@@ -60,7 +60,7 @@ class PostController extends Controller
                     </form>
                     ';
             })
-            ->editColumn('is_featured', '{{ $is_featured == 1 ? "featured" : "" }}' )
+            ->editColumn('is_featured', '{{ $is_featured == 1 ? "Đặc sắc" : "" }}' )
             ->editColumn('status', '{{ $status == 1 ? "public" : "private" }}' )
             ->make(true);
     }
@@ -93,7 +93,6 @@ class PostController extends Controller
                         .'-'
                         .(time() - strtotime(date('1997-03-18 12:00:00')))
                         .'.html';
-
         $post = Post::create($data);
 
         if($request->input('tags') != null){
@@ -103,7 +102,7 @@ class PostController extends Controller
             $post->untag();
         }
 
-        return redirect( route('admin.posts.edit', $post->id) );
+        return redirect(route('admin.posts.edit', $post->id) );
     }
 
     /**
@@ -138,19 +137,23 @@ class PostController extends Controller
      */
     public function update(StoreBlogPost $request, $id)
     {
+        // lấy giá trị đưọc gửi sang từ form
         $data = $request->except(['_token', '_method', 'tags']);
+        // lấy id user update bài viết
         $data['user_id'] = Auth::id();
-
-
+        // cập nhật bài viết
         Post::where('id', $id)->update($data);
+        // lấy bài viết vừa cập nhật và tag của nó
         $post = Post::where('id', $id)->with('tagged')->first();
-
+        // cập nhật tag
         if($request->input('tags') != null){
             $tags = explode(",",$request->input('tags'));
             $post->retag($tags);
         }else{
             $post->untag();
         }
+
+        // sau khi update quay về trang trước
         return redirect()->back();
     }
 

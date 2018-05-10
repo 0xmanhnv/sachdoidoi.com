@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/font-awesome.min.css') }}">
+        <!-- code codesnippet - text editor -->
+      <link href="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/styles/vs2015.css') }}" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/customer.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/loader.css') }}">
         {{-- add css --}}
@@ -84,6 +86,8 @@
     <script type="text/javascript" src="{{ asset('blog_assets/js/jquery-3.2.1.min.js') }}"></script>
     <!-- bootstrap -->
     <script type="text/javascript" src="{{ asset('blog_assets/js/bootstrap.min.js') }}"></script>
+    {{-- codesnippet --}}
+    <script type="text/javascript" src="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
     <!-- css custom -->
     <script type="text/javascript" src="{{ asset('blog_assets/js/customer.js') }}"></script>
     <script type="text/javascript">
@@ -91,6 +95,9 @@
             
             $("#loader").fadeOut(1000);
             $('.wraper-body').fadeIn( 2000);
+
+            // use hight light js
+            hljs.initHighlightingOnLoad();
         });
     </script>
     {{-- add script --}}

@@ -29,6 +29,11 @@ class CreatePostsTable extends Migration
                 $table->integer('user_id')->unsigned();
                 $table->integer('category_id')->unsigned();
                 $table->integer('view_count')->default(0);
+
+                // add foreign
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+
                 $table->timestamps();
                 $table->softDeletes();
             });

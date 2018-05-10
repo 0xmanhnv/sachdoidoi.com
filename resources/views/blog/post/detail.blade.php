@@ -4,14 +4,15 @@
 	@if(isset($post->title)) {{ $post->title }} @endif
 @endsection
 
-{{-- add meta --}}
-<meta property="og:url"           content="{{ url()->current() }}" />
-<meta property="og:type"          content="" />
-<meta property="og:title"         content="@if($post) {{ $post->title }} @endif" />
-<meta property="og:description"   content="@if($post) {{ $post->description }} @endif" />
-<meta property="og:image"         content="http://android.coloawap.net/wp-content/uploads/2014/01/710.png" />
-{{-- end add meta --}}
-{{-- {{ dd($post) }} --}}
+@section('head')
+	{{-- add meta --}}
+	<meta property="og:url"           content="{{ url()->current() }}" />
+	<meta property="og:type"          content="" />
+	<meta property="og:title"         content="@if($post) {{ $post->title }} @endif" />
+	<meta property="og:description"   content="@if($post) {{ $post->description }} @endif" />
+	<meta property="og:image"         content="http://android.coloawap.net/wp-content/uploads/2014/01/710.png" />
+	{{-- end add meta --}}
+@endsection
 @section('content')
 	@if(isset($post))
 		<div class="col-xs-12 col-sm-8 col-md-8">
