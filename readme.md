@@ -79,17 +79,17 @@ If you discover any security related issues, please email nguyenmanh0397@gmail.c
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/giaphiep/productcrud.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/nguyenmanh1997.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/giaphiep/productcrud/master.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/nguyenmanh1997/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/:vendor/:package_name.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/:vendor/:package_name.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/giaphiep/productcrud.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/nguyenmanh1997.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/giaphiep/productcrud
-[link-travis]: https://travis-ci.org/giaphiep/productcrud
-[link-scrutinizer]: https://scrutinizer-ci.com/g/giaphiep/productcrud/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/giaphiep/productcrud
-[link-downloads]: https://packagist.org/packages/giaphiep/productcrud
-[link-author]: https://github.com/giaphiep
+[link-packagist]: https://packagist.org/packages/nguyenmanh1997
+[link-travis]: https://travis-ci.org/nguyenmanh1997
+[link-scrutinizer]: https://scrutinizer-ci.com/g/nguyenmanh1997/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/nguyenmanh1997
+[link-downloads]: https://packagist.org/packages/nguyenmanh1997
+[link-author]: https://github.com/nguyenmanh1997
 [link-contributors]: ../../contributors
