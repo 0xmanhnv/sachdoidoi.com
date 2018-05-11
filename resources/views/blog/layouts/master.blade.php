@@ -5,13 +5,14 @@
         <title>@yield('title')</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <link rel="icon" href="{{ asset('blog_assets/favicon.png') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/font-awesome.min.css') }}">
         <!-- code codesnippet - text editor -->
       <link href="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/styles/vs2015.css') }}" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/customer.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/responsive.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/loader.css') }}">
         {{-- add css --}}
         @yield('head')
@@ -69,8 +70,9 @@
             <footer id="footer">
                 <div class="container">
                     <div class="copyrights">
-                        © Copyright 2017 | Designed by 
-                        <a href="#" style="color:#f35045;">Nguyễn Mạnh</a>
+                        <span>
+                            © Copyright 2017 | Designed by <a href="#" style="color:#f35045;">Nguyễn Mạnh</a>
+                        </span>
                     </div>
                     <div class="social-ul">
                         

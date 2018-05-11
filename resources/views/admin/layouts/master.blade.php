@@ -36,11 +36,12 @@
   <link rel="stylesheet" href="{{ asset('admin_assets/css/bootstrap3-wysihtml5.min.css') }}">
   <!-- code codesnippet - text editor -->
   <link href="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css') }}" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tagsinput.css') }}">
   <!-- css customer -->
   <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/customer.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tagsinput.css') }}">
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> --}}
+  <link rel="stylesheet" href="{{ asset('css/fonts.googleapis.com_css.css') }}">
   
   <!-- add header -->
   @yield('head')

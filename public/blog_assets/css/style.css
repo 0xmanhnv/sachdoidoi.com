@@ -5,7 +5,11 @@
 
 body {
   font-family: Helvetica,Arial,sans-serif;
-	background: #fafafa;
+	background: #f5f8fa;
+  padding-top: 70px;
+}
+pre{
+  padding: 0;
 }
 .navbar-custome {
 	background-color: #fff;
@@ -23,7 +27,7 @@ a {
 }
 a:hover {
 	text-decoration: none;
-    color: #f35045;
+  color: #f35045;
 }
 
 a.see-more{
@@ -83,16 +87,10 @@ h3.title:hover {
 .panel-body-custome {
 	padding: 15px 0;
 }
-.navbar-toggle {
-	background: #293545;
-	border:1px solid #293545;
-}
 .navbar-toggle .icon-bar {
 	background: #fff;
 }
-.nav>li>a:focus, .nav>li>a:hover {
-	background: #fafafa;
-}
+
 .fb-like-box, .fb-like-box span, .fb-like-box.fb_iframe_widget span iframe {
     width: 100% !important;
 }
@@ -152,7 +150,7 @@ menu, ol, ul {
     float: none;
     width: auto;
     /*padding-bottom: 10px;*/
-    border-bottom: 1px solid rgba(0,0,0,.05);
+    border-bottom: 1px dashed rgba(0,0,0,.05);
 }
 .link-custome {
     line-height: 30px;
@@ -305,7 +303,7 @@ h1.title {
 }
 .copyrights {
     color: #F1F1F1;
-    float: left;
+    /*float: left;*/
     /*text-align: center;*/
 }
 .social-ul {
@@ -767,6 +765,8 @@ contact-page .page-title-section {
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
     }
+
+
 @media only screen and (min-width: 768px) {
   .cd-top {
     right: 20px;
