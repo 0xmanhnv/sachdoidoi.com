@@ -2,6 +2,7 @@
 
 
 Route::get('/', 'Blog\BlogController@index');
+Route::get('/test', 'Blog\BlogController@index');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 
 
