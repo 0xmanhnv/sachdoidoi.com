@@ -127,16 +127,24 @@ a {
     .navbar-custome ul.dropdown-menu{
         padding-top: 0px;
         padding-bottom: 0px;
+        border-radius: 0px;
     }
     .navbar-custome > .navbar-brand-custome {
         padding: 7px 15px;
     }
     .navbar-custome .dropdown-menu > li > a:focus, .dropdown-menu > li > a{
         color: #f35045;
+        padding:5px 20px;
+    }
+    .navbar-custome .dropdown-menu > li > a:focus, .dropdown-menu > li > a::before{
+        content: '» ';
     }
     .navbar-custome .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover{
         background-color: #337ab7;
         color: white;
+    }
+    .nav > li > a:focus, .nav > li > a:hover{
+        background: #1D75A7 !important;
     }
 
 
@@ -169,4 +177,51 @@ a {
 }
     .detail-post-description blockquote{
         font-size: 12px;
+    }
+
+/*CUTOMER FOOTER*/
+#footer ul {
+    list-style-type: none;
+    text-align: right;
+}
+    #footer .social-icons {
+        color: black !important;
+        float: right;
+        width: 100%;
+    }
+    #footer ul.social-icons li {
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        background: #fff;
+        color: #252525;
+        display: inline-block;
+        margin: 0 7.5px;
+        cursor: pointer;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+    }
+    #footer ul.social-icons li a {
+        color: #252525;
+        text-decoration: none;
+        line-height: 25px;
+    }
+
+    #footer ul.social-icons li a i {
+        float: none;
+        position: static;
+        color: #252525;
+        display: inline-block;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+    }
+    #footer ul.social-icons li:hover i {
+        color: #fff;
+    }
+    #footer ul.social-icons li:hover {
+        -webkit-box-shadow: inset -30px 0 0 0 #3097D1;
+        -moz-box-shadow: inset -30px 0 0 0 #3097D1;
+        box-shadow: inset -30px 0 0 0 #3097D1;
     }

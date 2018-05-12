@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>@yield('title')</title>
+        <title>@yield('title') Lập trình website với Laravel || Nguyễn Mạnh</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/font-awesome.min.css') }}">
-        <!-- code codesnippet - text editor -->
+        <!-- code codesnippet - text editor --------------------------------------------------------------->
       <link href="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/styles/vs2015.css') }}" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/customer.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('blog_assets/css/responsive.css') }}">
@@ -38,13 +38,15 @@
 
         {{-- configure facebook --}}
         <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1395641663878197';
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        <script>
+            (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1395641663878197';
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         {{-- end configure facebook --}}
         <div class="wraper-body">
             <!-- HEADER -->
@@ -69,13 +71,30 @@
 
             <footer id="footer">
                 <div class="container">
-                    <div class="copyrights">
-                        <span>
-                            © Copyright 2017 | Designed by <a href="#" style="color:#f35045;">Nguyễn Mạnh</a>
-                        </span>
-                    </div>
-                    <div class="social-ul">
-                        
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="copyrights">
+                                <p>
+                                    © Copyright 2017 | Designed by <a href="#" style="color:#f35045;">Nguyễn Mạnh</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="social-icons">
+                                <li>
+                                    <a href="#" ><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </footer>
@@ -94,7 +113,6 @@
     <script type="text/javascript" src="{{ asset('blog_assets/js/customer.js') }}"></script>
     <script type="text/javascript">
         $(function(){
-            
             $("#loader").fadeOut(1000);
             $('.wraper-body').fadeIn( 2000);
 
@@ -102,6 +120,6 @@
             hljs.initHighlightingOnLoad();
         });
     </script>
-    {{-- add script --}}
+    {{-- add script  --}}
     @yield('script')
 </html>

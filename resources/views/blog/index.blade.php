@@ -1,9 +1,5 @@
 @extends('blog.layouts.master')
 
-@section('title')
-    {{ "Sách đổi đời" }}
-@endsection
-
 @section('content')
     <div class="col-xs-12 col-sm-8 col-md-8">
         @if(isset($posts))
@@ -45,7 +41,9 @@
                     @if($post->thumbnail)
                         <div class="col-xs-12">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <img src="{{ $post->thumbnail }}" style="min-width: 100%; max-width: 100%;" alt="{{ $post->title }}">
+                                <a href="{{ route('blog.post.detail', [$post->slug]) }}">
+                                    <img src="{{ $post->thumbnail }}" style="min-width: 100%; max-width: 100%;" alt="{{ $post->title }}">
+                                </a>
                             </div>
                         </div>
                     @endif

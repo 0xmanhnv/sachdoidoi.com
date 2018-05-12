@@ -292,19 +292,14 @@ h1.title {
     color: rgba(0,0,0,.8);
 }
 #footer {
-    line-height: 94px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     background-color: #293545;
     margin-top: 60px;
-    /*height: 90px;*/
     position: relative;
-    /*position: fixed;
-    bottom: 0;
-    width: 100%;    */
 }
 .copyrights {
     color: #F1F1F1;
-    /*float: left;*/
-    /*text-align: center;*/
 }
 .social-ul {
     float: right;
@@ -477,8 +472,8 @@ width: 100% !important;
   height: 40px;
   width: 40px;
   position: fixed;
-  bottom: 40px;
-  right: 10px;
+  bottom: 95px;
+  right: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   /* image replacement properties */
   overflow: hidden;
@@ -767,17 +762,4 @@ contact-page .page-title-section {
     }
 
 
-@media only screen and (min-width: 768px) {
-  .cd-top {
-    right: 20px;
-    bottom: 20px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .cd-top {
-    height: 50px;
-    width: 50px;
-    right: 30px;
-    bottom: 30px;
-  }
-}
+
