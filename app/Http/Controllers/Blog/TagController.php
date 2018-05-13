@@ -46,10 +46,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $slug)
+    public function show($slug)
     {
-        // dd("sdfds");
-        $tag = Tag::where('id','=', $id, 'and', 'slug', '=', $slug)->first();
+        $tag = Tag::where('slug', '=', $slug)->first();
 
         $posts = Post::withAllTags([$tag->name])->paginate(5);
 

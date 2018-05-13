@@ -30,7 +30,7 @@
                 <li><a href="{{ route('contact') }}">Liên hệ</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form form-inline" id="form-search" action="{{ route('blog.search') }}" method="get">
+                <form class="navbar-form form-inline" id="form-search" action="{{ route('search') }}" method="get">
                     <div class="input-group">
                         <input type="search" name="q" class="form-control" placeholder="Nhập từ khóa tìm kiếm!">
                         <div class="input-group-btn">

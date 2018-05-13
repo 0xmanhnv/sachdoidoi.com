@@ -34,18 +34,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function detail($slug)
+    public function detail($postSlug)
     {
         $post = Post::where( 
-                'slug', '=', $slug
+                'slug', '=', $postSlug
                 )
                 ->get()
                 ->first();
+
         Event::fire('posts.view', $post);
         
         return view('blog.post.detail',[
             'post' => $post,
         ]);
     }
-
 }

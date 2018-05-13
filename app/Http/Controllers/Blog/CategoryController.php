@@ -22,11 +22,9 @@ class CategoryController extends Controller
         return view('blog.categories.index');
     }
 
-    public function detail($id, $slug){
+    public function detail($slug){
         
         $category = Category::where(
-                    'id', '=', $id,
-                    'and',
                     'slug', '=', $slug,
                     'and',
                     'status', '=', 1

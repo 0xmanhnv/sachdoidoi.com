@@ -67,7 +67,7 @@
                                     </button>
                                     <div class="list-itemInfo">
                                         <h4 class="list-itemTitle">
-                                            <a href="{{ route('blog.category.detail', [$category->id, $category->slug]) }}" class="link  link-custome link--primary u-accentColor--textNormal"> 
+                                            <a href="{{ route('blog.category.detail', $category->slug) }}" class="link  link-custome link--primary u-accentColor--textNormal"> 
                                                 {{ $category->name }}
                                             </a>
                                         </h4>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="panel-body">
                         @foreach ($tags as $tag)
-                            <a href="{{ route('blog.tag.show', [$tag->id,$tag->slug]) }}">{{ $tag->name }}</a>,
+                            <a href="{{ route('blog.tag.show', $tag->slug) }}">{{ $tag->name }}</a>,
                         @endforeach
                     </div>
                 </div>

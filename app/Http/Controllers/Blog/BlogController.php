@@ -34,29 +34,6 @@ class BlogController extends Controller
         ]);
     }
 
-    /**
-     * show categories
-     * @return [type] [description]
-     */
-    public function categories(){
-        $categories = Category::where('status', '=', 1)->paginate(15);
-
-        // dd($categories);
-        return view('blog.categories.index');
-    }
-
-    /**
-     * show all post
-     * @return [type] [description]
-     */
-    public function posts(){
-        $posts = Post::where('status', '=', 1)->paginate(10);    
-        
-        return view('blog.post.list',[
-            'posts' => $posts,
-        ]);
-    }
-
 
     /**
      * Search post

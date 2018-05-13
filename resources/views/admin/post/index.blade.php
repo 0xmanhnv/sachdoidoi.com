@@ -77,6 +77,7 @@
 				processing: true,
 				serverSide: true,
 				responsive:true,
+				"order": [[ 0, 'asc' ], [ 1, 'asc' ]],
 				"ajax": '{!! route('admin.posts.json.list') !!}',
 				"columns": [
 					{"data": "id"},

@@ -1,11 +1,16 @@
 <?php
 
 
-Route::get('/', 'Blog\BlogController@index');
-Route::get('/test', 'Blog\BlogController@index');
+Route::get('/', 'Blog\BlogController@index')->name('home');
+// contact
 Route::get('/contact', 'HomeController@contact')->name('contact');
+/**
+ * search
+ */
+Route::get('/search', 'Blog\BlogController@showResultSearch')->name('search');
 
 
+// ADMIN -----------------------------------------------------------------------------//
 /**
  * admin auth
  * ** admin/login | admin/logout
@@ -13,9 +18,8 @@ Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::get('admin/login', 'Admin\Auth\LoginController@showLoginForm');
 Route::post('admin/login', 'Admin\Auth\LoginController@login');
 Route::get('admin/logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
-
 /**
- * /admin
+ * /admin group
  */
 Route::prefix('admin')->middleware('admin.login')->group(function(){
 	Route::get('/', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
@@ -114,37 +118,33 @@ Route::prefix('admin')->middleware('admin.login')->group(function(){
 		'index' => 'admin.users.index',
 	]]);
 });
+// --------------------------------------------------------------------------------//
 
 /**
- * /blog
+ * /BLOG ----------------------------------------------------------------------------//
  */
 Route::group(['prefix' => 'blog'], function(){
 	Route::get('/', 'Blog\BlogController@index')->name('blog.index');
-	/**
-	 * search
-	 */
-	Route::get('/search', 'Blog\BlogController@showResultSearch')->name('blog.search');
-	Route::get('tag/{id}/{slug}', 'Blog\TagController@show')->name('blog.tag.show');
+	
+	Route::get('tag/{slug}', 'Blog\TagController@show')->name('blog.tag.show');
 
 
 	/**
-	 * blog/posts
+	 * blog/ bai viet +++++++++++++++++++++++++++++++++++++++++++++++++++++//
 	 */
-	// Route::get('posts', 'Blog\BlogController@posts');
-	Route::prefix('post')->group(function(){
-		// Route::get('/', 'Blog\PostController@index')->name('blog.post.index');
-		Route::get('{slug}', 'Blog\PostController@detail')->middleware('filter.viewpost')->name('blog.post.detail');
-	});
-
+	Route::get('/{postSlug}', 'Blog\PostController@detail')->middleware('filter.viewpost')->name('blog.post.detail');
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+	
+	
 	/**
-	 * blog/category
+	 * blog/category ++++++++++++++++++++++++++++++++++++++++++++++++++++//
 	 */
-	// Route::get('categories', 'Blog\BlogController@categories');
 	Route::prefix('category')->group(function(){
-		// Route::get('/', 'Blog\CategoryController@index');
-		Route::get('{id}/{slug}', 'Blog\CategoryController@detail')->name('blog.category.detail');
+		Route::get('/{slug}', 'Blog\CategoryController@detail')->name('blog.category.detail');
 	});
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 });
+// ----------------------------------------------------------------------------------//
 
 /**
  * users
